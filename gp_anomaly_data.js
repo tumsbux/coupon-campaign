@@ -1,24 +1,24 @@
 window.DASHBOARD_DATA = {
-  "generated_at": "2026-11-21 14:45:27",
+  "generated_at": "2026-11-21 14:46:36",
   "target_date": "2026-11-21",
   "filter_note": "ไม่รวมสาขา 901",
   "summary": {
     "active_branches": 206,
-    "total_bills": 15429,
-    "gross_sales": 2249154.96,
-    "total_discount": 35522.91,
-    "total_coupon": 18190.0,
+    "total_bills": 15471,
+    "gross_sales": 2261351.96,
+    "total_discount": 35572.91,
+    "total_coupon": 18240.0,
     "total_score_disc": 17299.0,
-    "total_net_sales": 2213632.0,
-    "total_cost": 1554876.04,
-    "total_gp": 658755.96,
-    "gp_pct": 29.76,
+    "total_net_sales": 2225779.0,
+    "total_cost": 1563600.25,
+    "total_gp": 662178.75,
+    "gp_pct": 29.75,
     "neg_bills_count": 304,
-    "neg_bills_pct": 1.97,
+    "neg_bills_pct": 1.96,
     "total_loss_amount": 6991.99,
     "branches_affected_count": 139,
     "min_time": "6:53:21",
-    "max_time": "14:44:44"
+    "max_time": "14:45:32"
   },
   "rm_summary": [
     {
@@ -43959,55 +43959,55 @@ window.DASHBOARD_DATA = {
   "campaign_summary": {
     "start_date": "2026-11-01",
     "kpis": {
-      "total_sales_generated": 13682422.0,
-      "total_cost": 10309392.21,
-      "total_net_gp": 3373029.79,
+      "total_sales_generated": 13683356.0,
+      "total_cost": 10310145.09,
+      "total_net_gp": 3373210.91,
       "net_gp_pct": 24.65,
-      "total_discount_spent": 713290.0,
+      "total_discount_spent": 713340.0,
       "sales_roi_multiplier": 19.18,
       "gp_roi_multiplier": 4.73,
-      "total_coupons_issued": 171053,
-      "total_issued_amount": 4264320.0,
-      "total_coupons_used": 18784,
-      "total_used_amount": 713340.0,
+      "total_coupons_issued": 171061,
+      "total_issued_amount": 4264700.0,
+      "total_coupons_used": 18786,
+      "total_used_amount": 713410.0,
       "overall_redemption_rate": 10.98,
-      "unique_customers": 16948
+      "unique_customers": 16949
     },
     "funnel": [
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 100.0,
-        "issued_cnt": 3467,
-        "issued_amt": 346700.0,
+        "issued_cnt": 3469,
+        "issued_amt": 346900.0,
         "used_cnt": 2308,
         "used_amt": 230800.0,
-        "redemption_pct": 66.57
+        "redemption_pct": 66.53
       },
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 50.0,
-        "issued_cnt": 11353,
-        "issued_amt": 567650.0,
-        "used_cnt": 3840,
-        "used_amt": 192000.0,
-        "redemption_pct": 33.82
+        "issued_cnt": 11354,
+        "issued_amt": 567700.0,
+        "used_cnt": 3841,
+        "used_amt": 192050.0,
+        "redemption_pct": 33.83
       },
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 30.0,
-        "issued_cnt": 22531,
-        "issued_amt": 675930.0,
+        "issued_cnt": 22534,
+        "issued_amt": 676020.0,
         "used_cnt": 3782,
         "used_amt": 113460.0,
-        "redemption_pct": 16.79
+        "redemption_pct": 16.78
       },
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 20.0,
-        "issued_cnt": 30000,
-        "issued_amt": 600000.0,
-        "used_cnt": 2879,
-        "used_amt": 57580.0,
+        "issued_cnt": 30002,
+        "issued_amt": 600040.0,
+        "used_cnt": 2880,
+        "used_amt": 57600.0,
         "redemption_pct": 9.6
       },
       {
@@ -44024,14 +44024,14 @@ window.DASHBOARD_DATA = {
       {
         "timing_group": "DIFFERENT_DAY",
         "label": "📅 กลับมาซื้อซ้ำข้ามวัน (Customer Retention)",
-        "pair_count": 3921,
-        "unique_customers": 3666,
-        "discount_spent": 141340.0,
-        "b1_sales": 1991873.0,
-        "b2_sales": 1040352.0,
-        "total_sales": 3032225.0,
-        "total_cost": 2277426.05,
-        "combined_net_gp": 754798.95,
+        "pair_count": 3922,
+        "unique_customers": 3667,
+        "discount_spent": 141390.0,
+        "b1_sales": 1992626.0,
+        "b2_sales": 1040533.0,
+        "total_sales": 3033159.0,
+        "total_cost": 2278178.93,
+        "combined_net_gp": 754980.07,
         "combined_gp_pct": 24.89
       },
       {
