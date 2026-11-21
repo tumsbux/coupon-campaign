@@ -15,8 +15,11 @@ class DecimalEncoder(json.JSONEncoder):
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+def get_thai_time():
+    return datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=7)
+
 def run_detection():
-    print(f"[{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Starting GP anomaly detection across all branches (EXCLUDING 901)...")
+    print(f"[{get_thai_time().strftime('%Y-%m-%d %H:%M:%S')} THA] Starting GP anomaly detection across all branches (EXCLUDING 901)...")
     
     db_host = os.environ.get('DB_HOST', '203.154.83.62')
     db_port = int(os.environ.get('DB_PORT', '13306'))
@@ -529,7 +532,7 @@ def run_detection():
     conn.close()
     
     payload = {
-        'generated_at': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'generated_at': get_thai_time().strftime('%Y-%m-%d %H:%M:%S'),
         'target_date': target_date,
         'filter_note': 'ไม่รวมสาขา 901',
         'summary': {
