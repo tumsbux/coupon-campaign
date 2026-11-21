@@ -377,6 +377,155 @@ def run_detection():
         'overall_comb_gp_pct': float(overall_comb_gp_pct)
     }
 
+    # 8. Query Campaign Marketing Summary (From start_date e.g. 2026-11-01 to present)
+    cur.execute("""
+        SELECT 
+            coupontype,
+            couponamt,
+            COUNT(*) as issued_cnt,
+            SUM(couponamt) as issued_amt,
+            SUM(CASE WHEN billuse IS NOT NULL AND TRIM(billuse) != '' THEN 1 ELSE 0 END) as used_cnt,
+            SUM(CASE WHEN billuse IS NOT NULL AND TRIM(billuse) != '' THEN couponamt ELSE 0 END) as used_amt
+        FROM customer_coupon
+        WHERE begdate >= %s OR created_at >= %s
+        GROUP BY coupontype, couponamt
+        ORDER BY couponamt DESC
+    """, (start_date, start_date))
+    funnel_rows = cur.fetchall()
+    
+    total_issued_count = 0
+    total_issued_amount = Decimal('0.00')
+    total_used_count = 0
+    total_used_amount = Decimal('0.00')
+    funnel_list = []
+    
+    for fr in funnel_rows:
+        i_cnt = int(fr['issued_cnt'] or 0)
+        i_amt = Decimal(str(fr['issued_amt'] or 0))
+        u_cnt = int(fr['used_cnt'] or 0)
+        u_amt = Decimal(str(fr['used_amt'] or 0))
+        red_pct = round(u_cnt / i_cnt * 100, 2) if i_cnt > 0 else 0
+        total_issued_count += i_cnt
+        total_issued_amount += i_amt
+        total_used_count += u_cnt
+        total_used_amount += u_amt
+        funnel_list.append({
+            'coupontype': fr['coupontype'],
+            'couponamt': float(fr['couponamt']),
+            'issued_cnt': i_cnt,
+            'issued_amt': float(i_amt),
+            'used_cnt': u_cnt,
+            'used_amt': float(u_amt),
+            'redemption_pct': float(red_pct)
+        })
+
+    cur.execute("""
+        SELECT 
+            CASE 
+                WHEN b1.sodate IS NULL THEN 'NO_B1'
+                WHEN b1.sodate < b2.sodate THEN 'DIFFERENT_DAY'
+                WHEN b1.sodate = b2.sodate AND (TIME_TO_SEC(b2.sotime) - TIME_TO_SEC(b1.sotime)) BETWEEN 0 AND 600 THEN 'SPLIT_BILL_10M'
+                WHEN b1.sodate = b2.sodate AND (TIME_TO_SEC(b2.sotime) - TIME_TO_SEC(b1.sotime)) > 600 THEN 'SAME_DAY_LATER'
+                ELSE 'OTHER'
+            END as timing_group,
+            COUNT(*) as pair_count,
+            COUNT(DISTINCT cc.cstcode) as unique_customers,
+            SUM(cc.couponamt) as discount_spent,
+            SUM(b2.sonetamt) as b2_sales,
+            SUM(b2.sototcost) as b2_cost,
+            SUM(b2.sonetamt - b2.sototcost) as b2_gp,
+            SUM(IFNULL(b1.sonetamt, 0)) as b1_sales,
+            SUM(IFNULL(b1.sototcost, 0)) as b1_cost,
+            SUM(IFNULL(b1.sonetamt - b1.sototcost, 0)) as b1_gp,
+            SUM((b2.sonetamt - b2.sototcost) + IFNULL(b1.sonetamt - b1.sototcost, 0)) as combined_net_gp
+        FROM customer_coupon cc
+        JOIN bl_header b2 ON cc.billuse = b2.sono
+        LEFT JOIN bl_header b1 ON cc.billissue = b1.sono
+        WHERE (cc.begdate >= %s OR b2.sodate >= %s)
+          AND b2.sotowhs NOT IN ('901', '0901')
+        GROUP BY timing_group
+    """, (start_date, start_date))
+    timing_rows = cur.fetchall()
+
+    tot_camp_sales = Decimal('0.00')
+    tot_camp_cost = Decimal('0.00')
+    tot_camp_gp = Decimal('0.00')
+    tot_camp_disc = Decimal('0.00')
+    timing_list = []
+
+    timing_label_map = {
+        'SPLIT_BILL_10M': '⚡ แยกบิลซื้อซ้ำทันที (≤ 10 นาที)',
+        'SAME_DAY_LATER': '🕒 ซื้อซ้ำในวันเดียวกัน (> 10 นาที)',
+        'DIFFERENT_DAY': '📅 กลับมาซื้อซ้ำข้ามวัน (Customer Retention)',
+        'NO_B1': '🎁 คูปองวันเกิด / คูปองแจกพิเศษ (ไม่ผูกบิลก่อนหน้า)',
+        'OTHER': '📌 อื่นๆ'
+    }
+
+    for tr in timing_rows:
+        b1_s = Decimal(str(tr['b1_sales'] or 0))
+        b2_s = Decimal(str(tr['b2_sales'] or 0))
+        b1_c = Decimal(str(tr['b1_cost'] or 0))
+        b2_c = Decimal(str(tr['b2_cost'] or 0))
+        comb_s = b1_s + b2_s
+        comb_c = b1_c + b2_c
+        comb_gp = comb_s - comb_c
+        comb_gp_pct = round(comb_gp / comb_s * 100, 2) if comb_s > 0 else 0
+        d_spent = Decimal(str(tr['discount_spent'] or 0))
+        
+        tot_camp_sales += comb_s
+        tot_camp_cost += comb_c
+        tot_camp_gp += comb_gp
+        tot_camp_disc += d_spent
+
+        timing_list.append({
+            'timing_group': tr['timing_group'],
+            'label': timing_label_map.get(tr['timing_group'], tr['timing_group']),
+            'pair_count': int(tr['pair_count']),
+            'unique_customers': int(tr['unique_customers']),
+            'discount_spent': float(d_spent),
+            'b1_sales': float(b1_s),
+            'b2_sales': float(b2_s),
+            'total_sales': float(comb_s),
+            'total_cost': float(comb_c),
+            'combined_net_gp': float(comb_gp),
+            'combined_gp_pct': float(comb_gp_pct)
+        })
+
+    cur.execute("""
+        SELECT COUNT(DISTINCT cc.cstcode) as total_unique_members
+        FROM customer_coupon cc
+        JOIN bl_header b2 ON cc.billuse = b2.sono
+        WHERE (cc.begdate >= %s OR b2.sodate >= %s)
+          AND b2.sotowhs NOT IN ('901', '0901')
+    """, (start_date, start_date))
+    unique_members_cnt = cur.fetchone()['total_unique_members'] or 0
+
+    camp_net_margin = round(tot_camp_gp / tot_camp_sales * 100, 2) if tot_camp_sales > 0 else 0
+    sales_multiplier = round(tot_camp_sales / tot_camp_disc, 2) if tot_camp_disc > 0 else 0
+    gp_multiplier = round(tot_camp_gp / tot_camp_disc, 2) if tot_camp_disc > 0 else 0
+    overall_redemption_rate = round(total_used_count / total_issued_count * 100, 2) if total_issued_count > 0 else 0
+
+    campaign_summary = {
+        'start_date': start_date,
+        'kpis': {
+            'total_sales_generated': float(tot_camp_sales),
+            'total_cost': float(tot_camp_cost),
+            'total_net_gp': float(tot_camp_gp),
+            'net_gp_pct': float(camp_net_margin),
+            'total_discount_spent': float(tot_camp_disc),
+            'sales_roi_multiplier': float(sales_multiplier),
+            'gp_roi_multiplier': float(gp_multiplier),
+            'total_coupons_issued': total_issued_count,
+            'total_issued_amount': float(total_issued_amount),
+            'total_coupons_used': total_used_count,
+            'total_used_amount': float(total_used_amount),
+            'overall_redemption_rate': float(overall_redemption_rate),
+            'unique_customers': int(unique_members_cnt)
+        },
+        'funnel': funnel_list,
+        'timing_groups': timing_list
+    }
+
     conn.close()
     
     payload = {
@@ -407,7 +556,8 @@ def run_detection():
         'recent_negative_bills': neg_bills[:500],
         'negative_bills': neg_bills[:500],
         'coupon_pairs': coupon_pairs,
-        'coupon_pair_summary': coupon_pair_summary
+        'coupon_pair_summary': coupon_pair_summary,
+        'campaign_summary': campaign_summary
     }
     
     json_str = json.dumps(payload, ensure_ascii=False, cls=DecimalEncoder, indent=2)
