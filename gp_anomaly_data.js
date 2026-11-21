@@ -1,24 +1,24 @@
 window.DASHBOARD_DATA = {
-  "generated_at": "2026-11-21 07:40:06",
+  "generated_at": "2026-11-21 07:41:07",
   "target_date": "2026-11-21",
   "filter_note": "ไม่รวมสาขา 901",
   "summary": {
     "active_branches": 206,
-    "total_bills": 15220,
-    "gross_sales": 2217461.54,
-    "total_discount": 35239.49,
+    "total_bills": 15253,
+    "gross_sales": 2221043.54,
+    "total_discount": 35241.49,
     "total_coupon": 18020.0,
-    "total_score_disc": 17186.0,
-    "total_net_sales": 2182222.0,
-    "total_cost": 1532962.16,
-    "total_gp": 649259.84,
+    "total_score_disc": 17188.0,
+    "total_net_sales": 2185802.0,
+    "total_cost": 1535604.06,
+    "total_gp": 650197.94,
     "gp_pct": 29.75,
-    "neg_bills_count": 301,
+    "neg_bills_count": 302,
     "neg_bills_pct": 1.98,
-    "total_loss_amount": 6922.33,
+    "total_loss_amount": 6922.46,
     "branches_affected_count": 139,
     "min_time": "6:53:21",
-    "max_time": "14:39:40"
+    "max_time": "14:40:35"
   },
   "rm_summary": [
     {
@@ -977,9 +977,9 @@ window.DASHBOARD_DATA = {
     },
     {
       "rm_name": "ฐานพัฒน์ แสงจง",
-      "total_loss": 772.68,
+      "total_loss": 772.81,
       "loss_pct": 11.2,
-      "neg_bills_count": 37,
+      "neg_bills_count": 38,
       "branches_affected": 22,
       "dms": [
         {
@@ -1077,9 +1077,9 @@ window.DASHBOARD_DATA = {
         },
         {
           "dm_name": "จันทรัตน์ เปรมปรี",
-          "total_loss": 186.62,
+          "total_loss": 186.75,
           "loss_pct_in_rm": 24.2,
-          "neg_bills_count": 13,
+          "neg_bills_count": 14,
           "branches_affected": 9,
           "branches": [
             {
@@ -1128,8 +1128,8 @@ window.DASHBOARD_DATA = {
               "branch_code": "220",
               "branch_name": "ไร่ขิง (นฐ-3)",
               "province": "นครปฐม",
-              "total_loss": 3.64,
-              "neg_bills_count": 1
+              "total_loss": 3.77,
+              "neg_bills_count": 2
             },
             {
               "branch_code": "190",
@@ -20680,6 +20680,49 @@ window.DASHBOARD_DATA = {
       ]
     },
     {
+      "sono": "BL2201-261121-0075",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "14:38:05",
+      "sotowhs": "220",
+      "uname": "69277",
+      "cstcode": "0926923166",
+      "soamount": 10.0,
+      "sodisc": 2.0,
+      "sodisc_bill": 0.0,
+      "sodisc_coupon": 0.0,
+      "sodisc_score": 2.0,
+      "sonetamt": 8.0,
+      "sototcost": 8.13,
+      "gp": -0.13,
+      "gp_pct": -1.63,
+      "loss_amt": 0.13,
+      "sostatus": "U",
+      "somethod": "NM",
+      "soremark": "-",
+      "branch_name": "ไร่ขิง (นฐ-3)",
+      "dm": "จันทรัตน์ เปรมปรี",
+      "rm": "ฐานพัฒน์ แสงจง",
+      "province": "นครปฐม",
+      "items": [
+        {
+          "sono": "BL2201-261121-0075",
+          "soserlno": "001",
+          "iprod": "8858891302701",
+          "soqty": 1.0,
+          "sopricunit": 10.0,
+          "sopricdisc": 0.0,
+          "solineamt": 10.0,
+          "socstunit": 8.13,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": "อิชิตันเย็นเย็นเก๊กฮวย315ml."
+        }
+      ]
+    },
+    {
       "sono": "BL1061-261121-0023",
       "sodate": "2026-11-21 00:00:00",
       "sotime": "10:00:48",
@@ -39801,6 +39844,49 @@ window.DASHBOARD_DATA = {
       ]
     },
     {
+      "sono": "BL2201-261121-0075",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "14:38:05",
+      "sotowhs": "220",
+      "uname": "69277",
+      "cstcode": "0926923166",
+      "soamount": 10.0,
+      "sodisc": 2.0,
+      "sodisc_bill": 0.0,
+      "sodisc_coupon": 0.0,
+      "sodisc_score": 2.0,
+      "sonetamt": 8.0,
+      "sototcost": 8.13,
+      "gp": -0.13,
+      "gp_pct": -1.63,
+      "loss_amt": 0.13,
+      "sostatus": "U",
+      "somethod": "NM",
+      "soremark": "-",
+      "branch_name": "ไร่ขิง (นฐ-3)",
+      "dm": "จันทรัตน์ เปรมปรี",
+      "rm": "ฐานพัฒน์ แสงจง",
+      "province": "นครปฐม",
+      "items": [
+        {
+          "sono": "BL2201-261121-0075",
+          "soserlno": "001",
+          "iprod": "8858891302701",
+          "soqty": 1.0,
+          "sopricunit": 10.0,
+          "sopricdisc": 0.0,
+          "solineamt": 10.0,
+          "socstunit": 8.13,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": "อิชิตันเย็นเย็นเก๊กฮวย315ml."
+        }
+      ]
+    },
+    {
       "sono": "BL1061-261121-0023",
       "sodate": "2026-11-21 00:00:00",
       "sotime": "10:00:48",
@@ -43590,8 +43676,8 @@ window.DASHBOARD_DATA = {
       "total_discount_spent": 713120.0,
       "sales_roi_multiplier": 19.18,
       "gp_roi_multiplier": 4.73,
-      "total_coupons_issued": 171030,
-      "total_issued_amount": 4263470.0,
+      "total_coupons_issued": 171031,
+      "total_issued_amount": 4263490.0,
       "total_coupons_used": 18778,
       "total_used_amount": 713120.0,
       "overall_redemption_rate": 10.98,
@@ -43628,8 +43714,8 @@ window.DASHBOARD_DATA = {
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 20.0,
-        "issued_cnt": 29989,
-        "issued_amt": 599780.0,
+        "issued_cnt": 29990,
+        "issued_amt": 599800.0,
         "used_cnt": 2879,
         "used_amt": 57580.0,
         "redemption_pct": 9.6
