@@ -1,30 +1,30 @@
 {
-  "generated_at": "2026-11-21 14:43:24",
+  "generated_at": "2026-11-21 14:45:27",
   "target_date": "2026-11-21",
   "filter_note": "ไม่รวมสาขา 901",
   "summary": {
     "active_branches": 206,
-    "total_bills": 15351,
-    "gross_sales": 2236445.56,
-    "total_discount": 35388.51,
-    "total_coupon": 18140.0,
-    "total_score_disc": 17215.0,
-    "total_net_sales": 2201057.0,
-    "total_cost": 1546253.44,
-    "total_gp": 654803.56,
-    "gp_pct": 29.75,
-    "neg_bills_count": 303,
+    "total_bills": 15429,
+    "gross_sales": 2249154.96,
+    "total_discount": 35522.91,
+    "total_coupon": 18190.0,
+    "total_score_disc": 17299.0,
+    "total_net_sales": 2213632.0,
+    "total_cost": 1554876.04,
+    "total_gp": 658755.96,
+    "gp_pct": 29.76,
+    "neg_bills_count": 304,
     "neg_bills_pct": 1.97,
-    "total_loss_amount": 6950.24,
+    "total_loss_amount": 6991.99,
     "branches_affected_count": 139,
     "min_time": "6:53:21",
-    "max_time": "14:42:44"
+    "max_time": "14:44:44"
   },
   "rm_summary": [
     {
       "rm_name": "จินตนา อินทะเสโน",
       "total_loss": 2447.96,
-      "loss_pct": 35.2,
+      "loss_pct": 35.0,
       "neg_bills_count": 117,
       "branches_affected": 45,
       "dms": [
@@ -384,7 +384,7 @@
     {
       "rm_name": "สุพรรษา นามตาปี",
       "total_loss": 1945.66,
-      "loss_pct": 28.0,
+      "loss_pct": 27.8,
       "neg_bills_count": 79,
       "branches_affected": 34,
       "dms": [
@@ -667,7 +667,7 @@
     {
       "rm_name": "จริยา รัตนติน",
       "total_loss": 1783.81,
-      "loss_pct": 25.7,
+      "loss_pct": 25.5,
       "neg_bills_count": 69,
       "branches_affected": 38,
       "dms": [
@@ -977,16 +977,16 @@
     },
     {
       "rm_name": "ฐานพัฒน์ แสงจง",
-      "total_loss": 772.81,
-      "loss_pct": 11.1,
-      "neg_bills_count": 38,
+      "total_loss": 814.56,
+      "loss_pct": 11.6,
+      "neg_bills_count": 39,
       "branches_affected": 22,
       "dms": [
         {
           "dm_name": "วรุตม์ คงมั่น",
-          "total_loss": 582.68,
-          "loss_pct_in_rm": 75.4,
-          "neg_bills_count": 23,
+          "total_loss": 624.43,
+          "loss_pct_in_rm": 76.7,
+          "neg_bills_count": 24,
           "branches_affected": 12,
           "branches": [
             {
@@ -1011,6 +1011,13 @@
               "neg_bills_count": 1
             },
             {
+              "branch_code": "202",
+              "branch_name": "บ้านแหลม (พบ-2)",
+              "province": "เพชรบุรี",
+              "total_loss": 71.75,
+              "neg_bills_count": 2
+            },
+            {
               "branch_code": "191",
               "branch_name": "ทับสะแก(ปข-5)",
               "province": "ประจวบคีรีขันธ์",
@@ -1029,13 +1036,6 @@
               "branch_name": "บางสะพานน้อย",
               "province": "ประจวบคีรีขันธ์",
               "total_loss": 30.25,
-              "neg_bills_count": 1
-            },
-            {
-              "branch_code": "202",
-              "branch_name": "บ้านแหลม (พบ-2)",
-              "province": "เพชรบุรี",
-              "total_loss": 30.0,
               "neg_bills_count": 1
             },
             {
@@ -1078,7 +1078,7 @@
         {
           "dm_name": "จันทรัตน์ เปรมปรี",
           "total_loss": 186.75,
-          "loss_pct_in_rm": 24.2,
+          "loss_pct_in_rm": 22.9,
           "neg_bills_count": 14,
           "branches_affected": 9,
           "branches": [
@@ -1447,12 +1447,12 @@
     {
       "iprod": "8858839615023",
       "name": "น้ำมันปาล์มโอลีอินตราปานทิพย์1l.",
-      "total_qty": 50.0,
-      "bills_count": 21,
+      "total_qty": 53.0,
+      "bills_count": 22,
       "normal_cost": 47.25,
       "normal_price": 50.0,
-      "total_line_cost": 2362.5,
-      "total_line_amt": 2500.0
+      "total_line_cost": 2504.25,
+      "total_line_amt": 2650.0
     },
     {
       "iprod": "8850210000039",
@@ -5209,6 +5209,49 @@
           "solinetype": "N",
           "bldstatus": "N",
           "idesc": "น้ำมันถั่วเหลืององุ่น1000ml."
+        }
+      ]
+    },
+    {
+      "sono": "BL2021-261121-0050",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "14:43:01",
+      "sotowhs": "202",
+      "uname": "68741",
+      "cstcode": "261121144224954",
+      "soamount": 150.0,
+      "sodisc": 50.0,
+      "sodisc_bill": 50.0,
+      "sodisc_coupon": 50.0,
+      "sodisc_score": 0.0,
+      "sonetamt": 100.0,
+      "sototcost": 141.75,
+      "gp": -41.75,
+      "gp_pct": -41.75,
+      "loss_amt": 41.75,
+      "sostatus": "U",
+      "somethod": "NM",
+      "soremark": "COUPON",
+      "branch_name": "บ้านแหลม (พบ-2)",
+      "dm": "วรุตม์ คงมั่น",
+      "rm": "ฐานพัฒน์ แสงจง",
+      "province": "เพชรบุรี",
+      "items": [
+        {
+          "sono": "BL2021-261121-0050",
+          "soserlno": "001",
+          "iprod": "8858839615023",
+          "soqty": 3.0,
+          "sopricunit": 50.0,
+          "sopricdisc": 0.0,
+          "solineamt": 150.0,
+          "socstunit": 47.25,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": "น้ำมันปาล์มโอลีอินตราปานทิพย์1l."
         }
       ]
     },
@@ -24452,6 +24495,49 @@
       ]
     },
     {
+      "sono": "BL2021-261121-0050",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "14:43:01",
+      "sotowhs": "202",
+      "uname": "68741",
+      "cstcode": "261121144224954",
+      "soamount": 150.0,
+      "sodisc": 50.0,
+      "sodisc_bill": 50.0,
+      "sodisc_coupon": 50.0,
+      "sodisc_score": 0.0,
+      "sonetamt": 100.0,
+      "sototcost": 141.75,
+      "gp": -41.75,
+      "gp_pct": -41.75,
+      "loss_amt": 41.75,
+      "sostatus": "U",
+      "somethod": "NM",
+      "soremark": "COUPON",
+      "branch_name": "บ้านแหลม (พบ-2)",
+      "dm": "วรุตม์ คงมั่น",
+      "rm": "ฐานพัฒน์ แสงจง",
+      "province": "เพชรบุรี",
+      "items": [
+        {
+          "sono": "BL2021-261121-0050",
+          "soserlno": "001",
+          "iprod": "8858839615023",
+          "soqty": 3.0,
+          "sopricunit": 50.0,
+          "sopricdisc": 0.0,
+          "solineamt": 150.0,
+          "socstunit": 47.25,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": "น้ำมันปาล์มโอลีอินตราปานทิพย์1l."
+        }
+      ]
+    },
+    {
       "sono": "BL1761-261121-0043",
       "sodate": "2026-11-21 00:00:00",
       "sotime": "11:56:17",
@@ -40125,6 +40211,33 @@
   ],
   "coupon_pairs": [
     {
+      "cstcode": "261121144224954",
+      "branch_code": "202",
+      "branch_name": "บ้านแหลม (พบ-2)",
+      "rm": "ฐานพัฒน์ แสงจง",
+      "dm": "วรุตม์ คงมั่น",
+      "coupon_amt": 50.0,
+      "time_diff": "7 น. 42 วิ",
+      "is_split": true,
+      "b1_sono": "BL2021-261121-0049",
+      "b1_time": "14:35:19",
+      "b1_net": 599.0,
+      "b1_cost": 389.1,
+      "b1_gp": 209.9,
+      "b1_gp_pct": 35.04,
+      "b2_sono": "BL2021-261121-0050",
+      "b2_time": "14:43:01",
+      "b2_net": 100.0,
+      "b2_cost": 141.75,
+      "b2_gp": -41.75,
+      "b2_gp_pct": -41.75,
+      "comb_net": 699.0,
+      "comb_cost": 530.85,
+      "comb_gp": 168.15,
+      "comb_gp_pct": 24.06,
+      "is_net_profit": true
+    },
+    {
       "cstcode": "0936131652",
       "branch_code": "229",
       "branch_name": "มอ.สุราษฎร์ (สฎ-43)",
@@ -43825,38 +43938,38 @@
     }
   ],
   "coupon_pair_summary": {
-    "total_pairs": 137,
-    "net_profit_count": 125,
-    "net_profit_pct": 91.2,
+    "total_pairs": 138,
+    "net_profit_count": 126,
+    "net_profit_pct": 91.3,
     "net_loss_count": 12,
-    "net_loss_pct": 8.8,
-    "split_bill_count": 74,
-    "split_bill_pct": 54.0,
-    "total_b1_net": 137012.0,
-    "total_b1_cost": 96128.45,
-    "total_b1_gp": 40883.55,
-    "total_b2_net": 16361.0,
-    "total_b2_cost": 20841.95,
-    "total_b2_gp": -4480.95,
-    "total_combined_net": 153373.0,
-    "total_combined_cost": 116970.4,
-    "total_combined_gp": 36402.6,
-    "overall_comb_gp_pct": 23.73
+    "net_loss_pct": 8.7,
+    "split_bill_count": 75,
+    "split_bill_pct": 54.3,
+    "total_b1_net": 137611.0,
+    "total_b1_cost": 96517.55,
+    "total_b1_gp": 41093.45,
+    "total_b2_net": 16461.0,
+    "total_b2_cost": 20983.7,
+    "total_b2_gp": -4522.7,
+    "total_combined_net": 154072.0,
+    "total_combined_cost": 117501.25,
+    "total_combined_gp": 36570.75,
+    "overall_comb_gp_pct": 23.74
   },
   "campaign_summary": {
     "start_date": "2026-11-01",
     "kpis": {
-      "total_sales_generated": 13681723.0,
-      "total_cost": 10308861.36,
-      "total_net_gp": 3372861.64,
+      "total_sales_generated": 13682422.0,
+      "total_cost": 10309392.21,
+      "total_net_gp": 3373029.79,
       "net_gp_pct": 24.65,
-      "total_discount_spent": 713240.0,
+      "total_discount_spent": 713290.0,
       "sales_roi_multiplier": 19.18,
       "gp_roi_multiplier": 4.73,
-      "total_coupons_issued": 171043,
-      "total_issued_amount": 4263970.0,
-      "total_coupons_used": 18782,
-      "total_used_amount": 713240.0,
+      "total_coupons_issued": 171053,
+      "total_issued_amount": 4264320.0,
+      "total_coupons_used": 18784,
+      "total_used_amount": 713340.0,
       "overall_redemption_rate": 10.98,
       "unique_customers": 16948
     },
@@ -43864,26 +43977,26 @@
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 100.0,
-        "issued_cnt": 3466,
-        "issued_amt": 346600.0,
+        "issued_cnt": 3467,
+        "issued_amt": 346700.0,
         "used_cnt": 2308,
         "used_amt": 230800.0,
-        "redemption_pct": 66.59
+        "redemption_pct": 66.57
       },
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 50.0,
-        "issued_cnt": 11351,
-        "issued_amt": 567550.0,
-        "used_cnt": 3838,
-        "used_amt": 191900.0,
-        "redemption_pct": 33.81
+        "issued_cnt": 11353,
+        "issued_amt": 567650.0,
+        "used_cnt": 3840,
+        "used_amt": 192000.0,
+        "redemption_pct": 33.82
       },
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 30.0,
-        "issued_cnt": 22530,
-        "issued_amt": 675900.0,
+        "issued_cnt": 22531,
+        "issued_amt": 675930.0,
         "used_cnt": 3782,
         "used_amt": 113460.0,
         "redemption_pct": 16.79
@@ -43891,8 +44004,8 @@
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 20.0,
-        "issued_cnt": 29994,
-        "issued_amt": 599880.0,
+        "issued_cnt": 30000,
+        "issued_amt": 600000.0,
         "used_cnt": 2879,
         "used_amt": 57580.0,
         "redemption_pct": 9.6
@@ -43963,14 +44076,14 @@
       {
         "timing_group": "SPLIT_BILL_10M",
         "label": "⚡ แยกบิลซื้อซ้ำทันที (≤ 10 นาที)",
-        "pair_count": 5703,
-        "unique_customers": 5406,
-        "discount_spent": 286140.0,
-        "b1_sales": 4136679.0,
-        "b2_sales": 966370.0,
-        "total_sales": 5103049.0,
-        "total_cost": 3911499.34,
-        "combined_net_gp": 1191549.66,
+        "pair_count": 5704,
+        "unique_customers": 5407,
+        "discount_spent": 286190.0,
+        "b1_sales": 4137278.0,
+        "b2_sales": 966470.0,
+        "total_sales": 5103748.0,
+        "total_cost": 3912030.19,
+        "combined_net_gp": 1191717.81,
         "combined_gp_pct": 23.35
       }
     ]
