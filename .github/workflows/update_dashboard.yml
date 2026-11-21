@@ -2,8 +2,11 @@ name: Update Coupon Campaign Dashboard
 
 on:
   schedule:
-    # Run every 20 minutes (UTC)
+    # Backup cron on GitHub Actions (every 20 minutes)
     - cron: '*/20 * * * *'
+  repository_dispatch:
+    # Trigger from external services like n8n Webhook / API
+    types: [update_coupon_dashboard]
   workflow_dispatch:
   push:
     branches:
