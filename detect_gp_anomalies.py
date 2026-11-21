@@ -1,5 +1,6 @@
 import mysql.connector
 import json
+import time
 import datetime
 import os
 from collections import defaultdict
@@ -19,7 +20,8 @@ def get_thai_time():
     return datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=7)
 
 def run_detection():
-    print(f"[{get_thai_time().strftime('%Y-%m-%d %H:%M:%S')} THA] Starting GP anomaly detection across all branches (EXCLUDING 901)...")
+    thai_now = get_thai_time()
+    print(f"[{thai_now.strftime('%Y-%m-%d %H:%M:%S')} THA] Starting Multi-Day GP anomaly detection across all branches (1/11/2026 to present, EXCLUDING 901)...")
     
     db_host = os.environ.get('DB_HOST', '203.154.83.62')
     db_port = int(os.environ.get('DB_PORT', '13306'))
@@ -37,16 +39,22 @@ def run_detection():
     )
     cur = conn.cursor(dictionary=True)
     
-    today_str = datetime.date.today().strftime('%Y-%m-%d')
+    # 1. Fetch branch master info
+    cur.execute("SELECT code, name, dm_code, dm, rm_code, rm, prvn_name FROM `data-lake`.dim_branch")
+    branches_map = {b['code']: b for b in cur.fetchall()}
+    print(f"Loaded {len(branches_map)} branches from dim_branch.")
+
+    # 2. Get latest date
     cur.execute("SELECT MAX(sodate) as max_date FROM bl_header")
     max_d = cur.fetchone()['max_date']
+    today_str = datetime.date.today().strftime('%Y-%m-%d')
     target_date = max_d.strftime('%Y-%m-%d') if max_d else today_str
-        
-    print(f"Target analysis date: {target_date} (Excluding Branch 901)")
-    
-    # 1. Overall stats for target date (excluding 901)
+    print(f"Target analysis latest date: {target_date} (Start date: {start_date}, Excl 901)")
+
+    # 3. Daily aggregate summaries for all dates from start_date
     cur.execute("""
         SELECT 
+            sodate,
             COUNT(DISTINCT sotowhs) as active_branches,
             COUNT(*) as total_bills,
             SUM(soamount) as gross_sales,
@@ -56,14 +64,50 @@ def run_detection():
             SUM(sonetamt) as total_net_sales,
             SUM(sototcost) as total_cost,
             SUM(sonetamt - sototcost) as total_gp,
+            SUM(CASE WHEN sonetamt < sototcost THEN 1 ELSE 0 END) as neg_bills_count,
+            SUM(CASE WHEN sonetamt < sototcost THEN sototcost - sonetamt ELSE 0 END) as total_loss_amount,
             MIN(sotime) as min_time,
             MAX(sotime) as max_time
         FROM bl_header
-        WHERE sodate = %s AND sotowhs NOT IN ('901', '0901')
-    """, (target_date,))
-    overall = cur.fetchone()
-    
-    # 2. Fetch all negative GP bills (sonetamt < sototcost, excluding 901)
+        WHERE sodate >= %s AND sotowhs NOT IN ('901', '0901')
+        GROUP BY sodate
+        ORDER BY sodate DESC
+    """, (start_date,))
+    daily_sums = cur.fetchall()
+
+    daily_summary_list = []
+    daily_summary_by_date = {}
+    for d in daily_sums:
+        d_str = str(d['sodate'])[:10]
+        net = float(d['total_net_sales'] or 0)
+        gp = float(d['total_gp'] or 0)
+        bills = int(d['total_bills'] or 0)
+        neg = int(d['neg_bills_count'] or 0)
+        loss = float(d['total_loss_amount'] or 0)
+        rec = {
+            'date': d_str,
+            'active_branches': d['active_branches'],
+            'total_bills': bills,
+            'gross_sales': float(d['gross_sales'] or 0),
+            'total_discount': float(d['total_discount'] or 0),
+            'total_coupon': float(d['total_coupon'] or 0),
+            'total_score_disc': float(d['total_score_disc'] or 0),
+            'total_net_sales': net,
+            'total_cost': float(d['total_cost'] or 0),
+            'total_gp': gp,
+            'gp_pct': round(gp / net * 100, 2) if net > 0 else 0,
+            'neg_bills_count': neg,
+            'neg_bills_pct': round(neg / bills * 100, 2) if bills > 0 else 0,
+            'total_loss_amount': round(loss, 2),
+            'min_time': str(d['min_time']),
+            'max_time': str(d['max_time'])
+        }
+        daily_summary_list.append(rec)
+        daily_summary_by_date[d_str] = rec
+
+    print(f"Processed daily summaries for {len(daily_summary_list)} days.")
+
+    # 4. Fetch all negative GP bills from start_date
     cur.execute("""
         SELECT 
             h.sono, h.sodate, h.sotime, h.sotowhs, h.uname, h.cstcode,
@@ -74,29 +118,43 @@ def run_detection():
             ROUND(h.sototcost - h.sonetamt, 2) as loss_amt,
             h.sostatus, h.somethod, h.soremark
         FROM bl_header h
-        WHERE h.sodate = %s 
+        WHERE h.sodate >= %s
           AND h.sonetamt < h.sototcost
           AND h.sotowhs NOT IN ('901', '0901')
-        ORDER BY (h.sototcost - h.sonetamt) DESC, h.sotime DESC
-    """, (target_date,))
-    neg_bills = cur.fetchall()
+        ORDER BY h.sodate DESC, (h.sototcost - h.sonetamt) DESC, h.sotime DESC
+    """, (start_date,))
+    all_neg_bills = cur.fetchall()
+    print(f"Found total {len(all_neg_bills)} negative GP bills across {len(daily_summary_list)} days.")
+
+    # 5. Fetch details for negative bills (full details for target_date and top 60 per day for others)
+    bills_by_date = defaultdict(list)
+    sonos_for_details = []
     
-    print(f"Found {len(neg_bills)} negative GP bills (excluding branch 901).")
-    
-    # 3. Fetch branch master info
-    cur.execute("SELECT code, name, dm_code, dm, rm_code, rm, prvn_name FROM `data-lake`.dim_branch")
-    branch_rows = cur.fetchall()
-    branches_map = {b['code']: b for b in branch_rows}
-    
-    # 4. Fetch details for all negative GP bills
-    neg_sonos = [b['sono'] for b in neg_bills]
+    for b in all_neg_bills:
+        d_str = str(b['sodate'])[:10]
+        whs = b['sotowhs']
+        br_info = branches_map.get(whs, {})
+        b['branch_name'] = br_info.get('name', f"สาขา {whs}")
+        b['dm'] = br_info.get('dm') or 'ไม่ระบุ DM'
+        b['rm'] = br_info.get('rm') or 'ไม่ระบุ RM'
+        b['province'] = br_info.get('prvn_name', '-')
+        b['items'] = []
+        
+        if d_str == target_date or len(bills_by_date[d_str]) < 60:
+            sonos_for_details.append(b['sono'])
+            
+        bills_by_date[d_str].append(b)
+
     details_by_sono = {}
-    item_loss_summary = {}
-    
-    if neg_sonos:
+    item_stats_by_date = defaultdict(lambda: defaultdict(lambda: {
+        'iprod': '', 'name': '', 'total_qty': 0, 'bills_count': set(),
+        'normal_cost': 0, 'normal_price': 0, 'total_line_cost': 0, 'total_line_amt': 0
+    }))
+
+    if sonos_for_details:
         chunk_size = 500
-        for i in range(0, len(neg_sonos), chunk_size):
-            chunk = neg_sonos[i:i+chunk_size]
+        for i in range(0, len(sonos_for_details), chunk_size):
+            chunk = sonos_for_details[i:i+chunk_size]
             placeholder = ', '.join(['%s'] * len(chunk))
             cur.execute(f"""
                 SELECT 
@@ -111,142 +169,11 @@ def run_detection():
             """, chunk)
             for d in cur.fetchall():
                 details_by_sono.setdefault(d['sono'], []).append(d)
-                
-                iprod = d['iprod']
-                desc = d['idesc'] or iprod
-                qty = float(d['soqty'] or 0)
-                cost = float(d['socstunit'] or 0)
-                price = float(d['sopricunit'] or 0)
-                lineamt = float(d['solineamt'] or 0)
-                line_cost = qty * cost
-                
-                if iprod not in item_loss_summary:
-                    item_loss_summary[iprod] = {
-                        'iprod': iprod,
-                        'name': desc,
-                        'total_qty': 0,
-                        'bills_count': set(),
-                        'normal_cost': cost,
-                        'normal_price': price,
-                        'total_line_cost': 0,
-                        'total_line_amt': 0
-                    }
-                item_loss_summary[iprod]['total_qty'] += qty
-                item_loss_summary[iprod]['bills_count'].add(d['sono'])
-                item_loss_summary[iprod]['total_line_cost'] += line_cost
-                item_loss_summary[iprod]['total_line_amt'] += lineamt
 
-    # Enrich negative bills with branch info and items
-    branch_loss_summary = {}
-    rm_stats = defaultdict(lambda: {
-        'rm_name': '',
-        'branches': set(),
-        'neg_bills': 0,
-        'total_loss': 0.0,
-        'dms': defaultdict(lambda: {'dm_name': '', 'branches': set(), 'neg_bills': 0, 'loss': 0.0})
-    })
-
-    total_loss_sum = sum(float(b['loss_amt']) for b in neg_bills)
-
-    for b in neg_bills:
-        whs = b['sotowhs']
-        br_info = branches_map.get(whs, {})
-        b['branch_name'] = br_info.get('name', f"สาขา {whs}")
-        rm = br_info.get('rm') or 'ไม่ระบุ RM'
-        dm = br_info.get('dm') or 'ไม่ระบุ DM'
-        b['dm'] = dm
-        b['rm'] = rm
-        b['province'] = br_info.get('prvn_name', '-')
-        
-        b['items'] = details_by_sono.get(b['sono'], [])
-        loss = float(b['loss_amt'])
-        
-        # Branch aggregate
-        if whs not in branch_loss_summary:
-            branch_loss_summary[whs] = {
-                'branch_code': whs,
-                'branch_name': b['branch_name'],
-                'dm': b['dm'],
-                'rm': b['rm'],
-                'province': b['province'],
-                'neg_bills_count': 0,
-                'total_loss': 0.0,
-                'total_net_sales': 0.0,
-                'total_coupon': 0.0
-            }
-        branch_loss_summary[whs]['neg_bills_count'] += 1
-        branch_loss_summary[whs]['total_loss'] += loss
-        branch_loss_summary[whs]['total_net_sales'] += float(b['sonetamt'])
-        branch_loss_summary[whs]['total_coupon'] += float(b['sodisc_coupon'] or 0)
-        
-        # RM & DM aggregate
-        rm_stats[rm]['rm_name'] = rm
-        rm_stats[rm]['branches'].add(whs)
-        rm_stats[rm]['neg_bills'] += 1
-        rm_stats[rm]['total_loss'] += loss
-        
-        rm_stats[rm]['dms'][dm]['dm_name'] = dm
-        rm_stats[rm]['dms'][dm]['branches'].add(whs)
-        rm_stats[rm]['dms'][dm]['neg_bills'] += 1
-        rm_stats[rm]['dms'][dm]['loss'] += loss
-
-    # Format RM & DM summaries
-    rm_summary_list = []
-    for rm, s in sorted(rm_stats.items(), key=lambda x: x[1]['total_loss'], reverse=True):
-        dm_list = []
-        for dm, ds in sorted(s['dms'].items(), key=lambda x: x[1]['loss'], reverse=True):
-            brs_in_dm = []
-            for whs in ds['branches']:
-                b_info = branch_loss_summary.get(whs)
-                if b_info:
-                    brs_in_dm.append({
-                        'branch_code': whs,
-                        'branch_name': b_info['branch_name'],
-                        'province': b_info['province'],
-                        'total_loss': round(b_info['total_loss'], 2),
-                        'neg_bills_count': b_info['neg_bills_count']
-                    })
-            brs_in_dm.sort(key=lambda x: x['total_loss'], reverse=True)
-            dm_list.append({
-                'dm_name': dm,
-                'total_loss': round(ds['loss'], 2),
-                'loss_pct_in_rm': round((ds['loss'] / s['total_loss'] * 100), 1) if s['total_loss'] > 0 else 0,
-                'neg_bills_count': ds['neg_bills'],
-                'branches_affected': len(ds['branches']),
-                'branches': brs_in_dm
-            })
-        pct = (s['total_loss'] / total_loss_sum * 100) if total_loss_sum > 0 else 0
-        rm_summary_list.append({
-            'rm_name': rm,
-            'total_loss': round(s['total_loss'], 2),
-            'loss_pct': round(pct, 1),
-            'neg_bills_count': s['neg_bills'],
-            'branches_affected': len(s['branches']),
-            'dms': dm_list
-        })
-        
-    # Format Top Items Loss
-    top_items = []
-    for iprod, item in item_loss_summary.items():
-        top_items.append({
-            'iprod': iprod,
-            'name': item['name'],
-            'total_qty': item['total_qty'],
-            'bills_count': len(item['bills_count']),
-            'normal_cost': item['normal_cost'],
-            'normal_price': item['normal_price'],
-            'total_line_cost': round(item['total_line_cost'], 2),
-            'total_line_amt': round(item['total_line_amt'], 2)
-        })
-    top_items.sort(key=lambda x: x['bills_count'], reverse=True)
-    
-    # Format Top Branches Loss
-    top_branches = list(branch_loss_summary.values())
-    top_branches.sort(key=lambda x: x['total_loss'], reverse=True)
-    
-    # 7. Query Coupon Pairs (Bill 1: earned coupon vs Bill 2: redeemed coupon)
+    # 6. Fetch coupon pairs for all dates from start_date
     cur.execute("""
         SELECT 
+            b2.sodate as b2_date_full,
             cc.couponno, cc.couponamt, cc.billissue, cc.billuse, cc.cstcode,
             b2.sodate as b2_date, b2.sotime as b2_time, b2.sotowhs as b2_whs,
             b2.soamount as b2_amount, b2.sodisc_coupon as b2_coupon, b2.sonetamt as b2_net,
@@ -259,38 +186,28 @@ def run_detection():
         FROM customer_coupon cc
         JOIN bl_header b2 ON cc.billuse = b2.sono
         LEFT JOIN bl_header b1 ON cc.billissue = b1.sono
-        WHERE b2.sodate = %s 
+        WHERE b2.sodate >= %s 
           AND (b2.sonetamt - b2.sototcost) < 0
           AND b2.sotowhs NOT IN ('901', '0901')
-        ORDER BY b2.sotime DESC
-    """, (target_date,))
-    coupon_rows = cur.fetchall()
+        ORDER BY b2.sodate DESC, b2.sotime DESC
+    """, (start_date,))
+    all_coupon_rows = cur.fetchall()
+    print(f"Loaded {len(all_coupon_rows)} coupon pair rows.")
 
-    coupon_pairs = []
-    cp_profit_count = 0
-    cp_loss_count = 0
-    cp_split_count = 0
-    total_b1_net = Decimal('0.00')
-    total_b1_cost = Decimal('0.00')
-    total_b1_gp = Decimal('0.00')
-    total_b2_net = Decimal('0.00')
-    total_b2_cost = Decimal('0.00')
-    total_b2_gp = Decimal('0.00')
-
-    for r in coupon_rows:
+    coupons_by_date = defaultdict(list)
+    for r in all_coupon_rows:
+        d_str = str(r['b2_date'])[:10]
         b1_net = Decimal(str(r['b1_net'] or 0))
         b1_cost = Decimal(str(r['b1_cost'] or 0))
         b1_gp = Decimal(str(r['b1_gp'] or 0))
-        
         b2_net = Decimal(str(r['b2_net'] or 0))
         b2_cost = Decimal(str(r['b2_cost'] or 0))
         b2_gp = Decimal(str(r['b2_gp'] or 0))
-        
         comb_net = b1_net + b2_net
         comb_cost = b1_cost + b2_cost
         comb_gp = comb_net - comb_cost
         comb_gp_pct = round(comb_gp / comb_net * 100, 2) if comb_net > 0 else 0
-        
+
         time_diff_str = "-"
         is_split = False
         if r['b1_date'] and r['b2_date'] and str(r['b1_date'])[:10] == str(r['b2_date'])[:10]:
@@ -304,30 +221,17 @@ def run_detection():
                     time_diff_str = f"{mins} น. {secs} วิ"
                     if mins <= 10:
                         is_split = True
-                        cp_split_count += 1
             except Exception:
                 pass
         elif r['b1_date']:
             time_diff_str = f"คนละวัน ({str(r['b1_date'])[:10]})"
-            
+
         br = branches_map.get(r['b2_whs'], {})
         branch_name = br.get('name', f"สาขา {r['b2_whs']}")
         rm = br.get('rm', '-')
         dm = br.get('dm', '-')
-        
-        if comb_gp >= 0:
-            cp_profit_count += 1
-        else:
-            cp_loss_count += 1
-            
-        total_b1_net += b1_net
-        total_b1_cost += b1_cost
-        total_b1_gp += b1_gp
-        total_b2_net += b2_net
-        total_b2_cost += b2_cost
-        total_b2_gp += b2_gp
-        
-        coupon_pairs.append({
+
+        coupons_by_date[d_str].append({
             'cstcode': r['cstcode'],
             'branch_code': r['b2_whs'],
             'branch_name': branch_name,
@@ -355,32 +259,186 @@ def run_detection():
             'is_net_profit': bool(comb_gp >= 0)
         })
 
-    total_combined_net = total_b1_net + total_b2_net
-    total_combined_cost = total_b1_cost + total_b2_cost
-    total_combined_gp = total_combined_net - total_combined_cost
-    overall_comb_gp_pct = round(total_combined_gp / total_combined_net * 100, 2) if total_combined_net > 0 else 0
+    # 7. Assemble daily records for each date
+    available_dates = [d['date'] for d in daily_summary_list]
+    daily_records = {}
 
-    coupon_pair_summary = {
-        'total_pairs': len(coupon_pairs),
-        'net_profit_count': cp_profit_count,
-        'net_profit_pct': round(cp_profit_count / len(coupon_pairs) * 100, 1) if coupon_pairs else 0,
-        'net_loss_count': cp_loss_count,
-        'net_loss_pct': round(cp_loss_count / len(coupon_pairs) * 100, 1) if coupon_pairs else 0,
-        'split_bill_count': cp_split_count,
-        'split_bill_pct': round(cp_split_count / len(coupon_pairs) * 100, 1) if coupon_pairs else 0,
-        'total_b1_net': float(total_b1_net),
-        'total_b1_cost': float(total_b1_cost),
-        'total_b1_gp': float(total_b1_gp),
-        'total_b2_net': float(total_b2_net),
-        'total_b2_cost': float(total_b2_cost),
-        'total_b2_gp': float(total_b2_gp),
-        'total_combined_net': float(total_combined_net),
-        'total_combined_cost': float(total_combined_cost),
-        'total_combined_gp': float(total_combined_gp),
-        'overall_comb_gp_pct': float(overall_comb_gp_pct)
-    }
+    for d_str in available_dates:
+        cur_summary = daily_summary_by_date[d_str]
+        cur_bills = bills_by_date[d_str]
+        cur_coupons = coupons_by_date[d_str]
 
-    # 8. Query Campaign Marketing Summary (From start_date e.g. 2026-11-01 to present)
+        # Attach items and accumulate item stats
+        day_item_map = {}
+        for b in cur_bills:
+            items = details_by_sono.get(b['sono'], [])
+            b['items'] = items
+            for it in items:
+                iprod = it['iprod']
+                if iprod not in day_item_map:
+                    day_item_map[iprod] = {
+                        'iprod': iprod,
+                        'name': it['idesc'] or iprod,
+                        'total_qty': 0,
+                        'bills_count': set(),
+                        'normal_cost': float(it['socstunit'] or 0),
+                        'normal_price': float(it['sopricunit'] or 0),
+                        'total_line_cost': 0,
+                        'total_line_amt': 0
+                    }
+                q = float(it['soqty'] or 0)
+                c = float(it['socstunit'] or 0)
+                amt = float(it['solineamt'] or 0)
+                day_item_map[iprod]['total_qty'] += q
+                day_item_map[iprod]['bills_count'].add(b['sono'])
+                day_item_map[iprod]['total_line_cost'] += q * c
+                day_item_map[iprod]['total_line_amt'] += amt
+
+        # Format Top Items for this day
+        top_items_list = []
+        for iprod, item in day_item_map.items():
+            top_items_list.append({
+                'iprod': iprod,
+                'name': item['name'],
+                'total_qty': item['total_qty'],
+                'bills_count': len(item['bills_count']),
+                'normal_cost': item['normal_cost'],
+                'normal_price': item['normal_price'],
+                'total_line_cost': round(item['total_line_cost'], 2),
+                'total_line_amt': round(item['total_line_amt'], 2)
+            })
+        top_items_list.sort(key=lambda x: x['bills_count'], reverse=True)
+
+        # RM & DM aggregations for this day
+        rm_stats = defaultdict(lambda: {
+            'rm_name': '',
+            'branches': set(),
+            'neg_bills': 0,
+            'total_loss': 0.0,
+            'dms': defaultdict(lambda: {'dm_name': '', 'branches': set(), 'neg_bills': 0, 'loss': 0.0})
+        })
+        branch_loss_summary = {}
+        day_total_loss = sum(float(b['loss_amt']) for b in cur_bills)
+
+        for b in cur_bills:
+            whs = b['sotowhs']
+            rm = b['rm']
+            dm = b['dm']
+            loss = float(b['loss_amt'])
+
+            if whs not in branch_loss_summary:
+                branch_loss_summary[whs] = {
+                    'branch_code': whs,
+                    'branch_name': b['branch_name'],
+                    'dm': dm,
+                    'rm': rm,
+                    'province': b['province'],
+                    'neg_bills_count': 0,
+                    'total_loss': 0.0,
+                    'total_net_sales': 0.0,
+                    'total_coupon': 0.0
+                }
+            branch_loss_summary[whs]['neg_bills_count'] += 1
+            branch_loss_summary[whs]['total_loss'] += loss
+            branch_loss_summary[whs]['total_net_sales'] += float(b['sonetamt'])
+            branch_loss_summary[whs]['total_coupon'] += float(b['sodisc_coupon'] or 0)
+
+            rm_stats[rm]['rm_name'] = rm
+            rm_stats[rm]['branches'].add(whs)
+            rm_stats[rm]['neg_bills'] += 1
+            rm_stats[rm]['total_loss'] += loss
+
+            rm_stats[rm]['dms'][dm]['dm_name'] = dm
+            rm_stats[rm]['dms'][dm]['branches'].add(whs)
+            rm_stats[rm]['dms'][dm]['neg_bills'] += 1
+            rm_stats[rm]['dms'][dm]['loss'] += loss
+
+        rm_summary_list = []
+        for rm, s in sorted(rm_stats.items(), key=lambda x: x[1]['total_loss'], reverse=True):
+            dm_list = []
+            for dm, ds in sorted(s['dms'].items(), key=lambda x: x[1]['loss'], reverse=True):
+                brs_in_dm = []
+                for whs in ds['branches']:
+                    b_info = branch_loss_summary.get(whs)
+                    if b_info:
+                        brs_in_dm.append({
+                            'branch_code': whs,
+                            'branch_name': b_info['branch_name'],
+                            'province': b_info['province'],
+                            'total_loss': round(b_info['total_loss'], 2),
+                            'neg_bills_count': b_info['neg_bills_count']
+                        })
+                brs_in_dm.sort(key=lambda x: x['total_loss'], reverse=True)
+                dm_list.append({
+                    'dm_name': dm,
+                    'total_loss': round(ds['loss'], 2),
+                    'loss_pct_in_rm': round((ds['loss'] / s['total_loss'] * 100), 1) if s['total_loss'] > 0 else 0,
+                    'neg_bills_count': ds['neg_bills'],
+                    'branches_affected': len(ds['branches']),
+                    'branches': brs_in_dm
+                })
+            pct = (s['total_loss'] / day_total_loss * 100) if day_total_loss > 0 else 0
+            rm_summary_list.append({
+                'rm_name': rm,
+                'total_loss': round(s['total_loss'], 2),
+                'loss_pct': round(pct, 1),
+                'neg_bills_count': s['neg_bills'],
+                'branches_affected': len(s['branches']),
+                'dms': dm_list
+            })
+
+        top_branches = list(branch_loss_summary.values())
+        top_branches.sort(key=lambda x: x['total_loss'], reverse=True)
+
+        # Coupon pairs summary
+        cp_profit = sum(1 for p in cur_coupons if p['is_net_profit'])
+        cp_loss = sum(1 for p in cur_coupons if not p['is_net_profit'])
+        cp_split = sum(1 for p in cur_coupons if p['is_split'])
+        b1_net_tot = sum(p['b1_net'] for p in cur_coupons)
+        b1_cost_tot = sum(p['b1_cost'] for p in cur_coupons)
+        b1_gp_tot = sum(p['b1_gp'] for p in cur_coupons)
+        b2_net_tot = sum(p['b2_net'] for p in cur_coupons)
+        b2_cost_tot = sum(p['b2_cost'] for p in cur_coupons)
+        b2_gp_tot = sum(p['b2_gp'] for p in cur_coupons)
+        comb_net_tot = b1_net_tot + b2_net_tot
+        comb_cost_tot = b1_cost_tot + b2_cost_tot
+        comb_gp_tot = comb_net_tot - comb_cost_tot
+
+        cp_summary = {
+            'total_pairs': len(cur_coupons),
+            'net_profit_count': cp_profit,
+            'net_profit_pct': round(cp_profit / len(cur_coupons) * 100, 1) if cur_coupons else 0,
+            'net_loss_count': cp_loss,
+            'net_loss_pct': round(cp_loss / len(cur_coupons) * 100, 1) if cur_coupons else 0,
+            'split_bill_count': cp_split,
+            'split_bill_pct': round(cp_split / len(cur_coupons) * 100, 1) if cur_coupons else 0,
+            'total_b1_net': float(b1_net_tot),
+            'total_b1_cost': float(b1_cost_tot),
+            'total_b1_gp': float(b1_gp_tot),
+            'total_b2_net': float(b2_net_tot),
+            'total_b2_cost': float(b2_cost_tot),
+            'total_b2_gp': float(b2_gp_tot),
+            'total_combined_net': float(comb_net_tot),
+            'total_combined_cost': float(comb_cost_tot),
+            'total_combined_gp': float(comb_gp_tot),
+            'overall_comb_gp_pct': round(comb_gp_tot / comb_net_tot * 100, 2) if comb_net_tot > 0 else 0
+        }
+
+        daily_records[d_str] = {
+            'date': d_str,
+            'summary': {
+                **cur_summary,
+                'branches_affected_count': len(branch_loss_summary)
+            },
+            'rm_summary': rm_summary_list,
+            'top_branches_affected': top_branches[:25],
+            'top_loss_items': top_items_list[:20],
+            'recent_negative_bills': cur_bills[:250],
+            'coupon_pairs': cur_coupons[:300],
+            'coupon_pair_summary': cp_summary
+        }
+
+    # 8. Query Campaign Marketing Summary (Tab 5)
     cur.execute("""
         SELECT 
             coupontype,
@@ -395,13 +453,12 @@ def run_detection():
         ORDER BY couponamt DESC
     """, (start_date, start_date))
     funnel_rows = cur.fetchall()
-    
+
     total_issued_count = 0
     total_issued_amount = Decimal('0.00')
     total_used_count = 0
     total_used_amount = Decimal('0.00')
     funnel_list = []
-    
     for fr in funnel_rows:
         i_cnt = int(fr['issued_cnt'] or 0)
         i_amt = Decimal(str(fr['issued_amt'] or 0))
@@ -455,7 +512,6 @@ def run_detection():
     tot_camp_gp = Decimal('0.00')
     tot_camp_disc = Decimal('0.00')
     timing_list = []
-
     timing_label_map = {
         'SPLIT_BILL_10M': '⚡ แยกบิลซื้อซ้ำทันที (≤ 10 นาที)',
         'SAME_DAY_LATER': '🕒 ซื้อซ้ำในวันเดียวกัน (> 10 นาที)',
@@ -463,7 +519,6 @@ def run_detection():
         'NO_B1': '🎁 คูปองวันเกิด / คูปองแจกพิเศษ (ไม่ผูกบิลก่อนหน้า)',
         'OTHER': '📌 อื่นๆ'
     }
-
     for tr in timing_rows:
         b1_s = Decimal(str(tr['b1_sales'] or 0))
         b2_s = Decimal(str(tr['b2_sales'] or 0))
@@ -474,12 +529,10 @@ def run_detection():
         comb_gp = comb_s - comb_c
         comb_gp_pct = round(comb_gp / comb_s * 100, 2) if comb_s > 0 else 0
         d_spent = Decimal(str(tr['discount_spent'] or 0))
-        
         tot_camp_sales += comb_s
         tot_camp_cost += comb_c
         tot_camp_gp += comb_gp
         tot_camp_disc += d_spent
-
         timing_list.append({
             'timing_group': tr['timing_group'],
             'label': timing_label_map.get(tr['timing_group'], tr['timing_group']),
@@ -530,56 +583,45 @@ def run_detection():
     }
 
     conn.close()
-    
+
+    # Active/default record
+    today_record = daily_records.get(target_date, list(daily_records.values())[0])
+
     payload = {
-        'generated_at': get_thai_time().strftime('%Y-%m-%d %H:%M:%S'),
+        'generated_at': thai_now.strftime('%Y-%m-%d %H:%M:%S'),
         'target_date': target_date,
+        'available_dates': available_dates,
         'filter_note': 'ไม่รวมสาขา 901',
-        'summary': {
-            'active_branches': overall['active_branches'],
-            'total_bills': overall['total_bills'],
-            'gross_sales': float(overall['gross_sales'] or 0),
-            'total_discount': float(overall['total_discount'] or 0),
-            'total_coupon': float(overall['total_coupon'] or 0),
-            'total_score_disc': float(overall['total_score_disc'] or 0),
-            'total_net_sales': float(overall['total_net_sales'] or 0),
-            'total_cost': float(overall['total_cost'] or 0),
-            'total_gp': float(overall['total_gp'] or 0),
-            'gp_pct': round(float(overall['total_gp'] or 0) / float(overall['total_net_sales'] or 1) * 100, 2),
-            'neg_bills_count': len(neg_bills),
-            'neg_bills_pct': round(len(neg_bills) / float(overall['total_bills'] or 1) * 100, 2),
-            'total_loss_amount': round(total_loss_sum, 2),
-            'branches_affected_count': len(branch_loss_summary),
-            'min_time': str(overall['min_time']),
-            'max_time': str(overall['max_time'])
-        },
-        'rm_summary': rm_summary_list,
-        'top_branches_affected': top_branches[:25],
-        'top_loss_items': top_items[:20],
-        'recent_negative_bills': neg_bills[:500],
-        'negative_bills': neg_bills[:500],
-        'coupon_pairs': coupon_pairs,
-        'coupon_pair_summary': coupon_pair_summary,
+        'daily_summary_list': daily_summary_list,
+        'daily_records': daily_records,
+        # Default view references
+        'summary': today_record['summary'],
+        'rm_summary': today_record['rm_summary'],
+        'top_branches_affected': today_record['top_branches_affected'],
+        'top_loss_items': today_record['top_loss_items'],
+        'recent_negative_bills': today_record['recent_negative_bills'],
+        'negative_bills': today_record['recent_negative_bills'],
+        'coupon_pairs': today_record['coupon_pairs'],
+        'coupon_pair_summary': today_record['coupon_pair_summary'],
         'campaign_summary': campaign_summary
     }
-    
+
     json_str = json.dumps(payload, ensure_ascii=False, cls=DecimalEncoder, indent=2)
-    
+
     # 1. Save JSON file
     out_json = os.path.join(BASE_DIR, "gp_anomaly_data.json")
     with open(out_json, "w", encoding="utf-8") as f:
         f.write(json_str)
-    print(f"Data saved to {out_json}")
+    print(f"Data saved to {out_json} ({len(json_str)/1024/1024:.2f} MB)")
     
-    # 2. Save JS file for local file:// protocol access without CORS restrictions!
+    # 2. Save JS file for local access without CORS restrictions
     out_js = os.path.join(BASE_DIR, "gp_anomaly_data.js")
     with open(out_js, "w", encoding="utf-8") as f:
         f.write("window.DASHBOARD_DATA = " + json_str + ";\n")
     print(f"Data saved to {out_js}")
-    
+
     return payload
 
 if __name__ == "__main__":
     res = run_detection()
-    print("Summary (Excl 901):", res['summary'])
-    print("RM count:", len(res['rm_summary']))
+    print("Multi-Day Detection Completed. Total Days:", len(res['available_dates']))
