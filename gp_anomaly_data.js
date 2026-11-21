@@ -1,38 +1,38 @@
 window.DASHBOARD_DATA = {
-  "generated_at": "2026-11-21 14:14:46",
+  "generated_at": "2026-11-21 07:18:16",
   "target_date": "2026-11-21",
   "filter_note": "ไม่รวมสาขา 901",
   "summary": {
     "active_branches": 206,
-    "total_bills": 14255,
-    "gross_sales": 2067362.75,
-    "total_discount": 32663.7,
-    "total_coupon": 16830.0,
-    "total_score_disc": 15803.0,
-    "total_net_sales": 2034699.0,
-    "total_cost": 1429465.55,
-    "total_gp": 605233.45,
-    "gp_pct": 29.75,
-    "neg_bills_count": 286,
-    "neg_bills_pct": 2.01,
-    "total_loss_amount": 6537.48,
+    "total_bills": 14384,
+    "gross_sales": 2089994.75,
+    "total_discount": 32855.7,
+    "total_coupon": 16910.0,
+    "total_score_disc": 15915.0,
+    "total_net_sales": 2057139.0,
+    "total_cost": 1444789.01,
+    "total_gp": 612349.99,
+    "gp_pct": 29.77,
+    "neg_bills_count": 288,
+    "neg_bills_pct": 2.0,
+    "total_loss_amount": 6558.16,
     "branches_affected_count": 136,
     "min_time": "6:53:21",
-    "max_time": "14:14:07"
+    "max_time": "14:17:41"
   },
   "rm_summary": [
     {
       "rm_name": "จินตนา อินทะเสโน",
-      "total_loss": 2283.71,
-      "loss_pct": 34.9,
-      "neg_bills_count": 105,
+      "total_loss": 2304.39,
+      "loss_pct": 35.1,
+      "neg_bills_count": 107,
       "branches_affected": 44,
       "dms": [
         {
           "dm_name": "ณัฐกมล พิมเสน",
-          "total_loss": 819.9,
-          "loss_pct_in_rm": 35.9,
-          "neg_bills_count": 25,
+          "total_loss": 820.24,
+          "loss_pct_in_rm": 35.6,
+          "neg_bills_count": 26,
           "branches_affected": 9,
           "branches": [
             {
@@ -95,15 +95,15 @@ window.DASHBOARD_DATA = {
               "branch_code": "051",
               "branch_name": "คลองยาง",
               "province": "กระบี่",
-              "total_loss": 16.8,
-              "neg_bills_count": 2
+              "total_loss": 17.14,
+              "neg_bills_count": 3
             }
           ]
         },
         {
           "dm_name": "ญาณิศา แด่หวา",
           "total_loss": 765.5,
-          "loss_pct_in_rm": 33.5,
+          "loss_pct_in_rm": 33.2,
           "neg_bills_count": 46,
           "branches_affected": 13,
           "branches": [
@@ -202,9 +202,9 @@ window.DASHBOARD_DATA = {
         },
         {
           "dm_name": "ธัญชนก  นันทสุคนธ์",
-          "total_loss": 376.2,
-          "loss_pct_in_rm": 16.5,
-          "neg_bills_count": 18,
+          "total_loss": 396.54,
+          "loss_pct_in_rm": 17.2,
+          "neg_bills_count": 19,
           "branches_affected": 11,
           "branches": [
             {
@@ -243,6 +243,13 @@ window.DASHBOARD_DATA = {
               "neg_bills_count": 3
             },
             {
+              "branch_code": "154",
+              "branch_name": "วังตะกอ",
+              "province": "ชุมพร",
+              "total_loss": 31.94,
+              "neg_bills_count": 2
+            },
+            {
               "branch_code": "118",
               "branch_name": "มาบอำมฤต",
               "province": "ชุมพร",
@@ -264,13 +271,6 @@ window.DASHBOARD_DATA = {
               "neg_bills_count": 2
             },
             {
-              "branch_code": "154",
-              "branch_name": "วังตะกอ",
-              "province": "ชุมพร",
-              "total_loss": 11.6,
-              "neg_bills_count": 1
-            },
-            {
               "branch_code": "054",
               "branch_name": "ท่าชนะ",
               "province": "สุราษฎร์ธานี",
@@ -289,7 +289,7 @@ window.DASHBOARD_DATA = {
         {
           "dm_name": "แพรทิพย์ จันทร์ปาน",
           "total_loss": 322.11,
-          "loss_pct_in_rm": 14.1,
+          "loss_pct_in_rm": 14.0,
           "neg_bills_count": 16,
           "branches_affected": 11,
           "branches": [
@@ -377,7 +377,7 @@ window.DASHBOARD_DATA = {
     {
       "rm_name": "สุพรรษา นามตาปี",
       "total_loss": 1790.82,
-      "loss_pct": 27.4,
+      "loss_pct": 27.3,
       "neg_bills_count": 77,
       "branches_affected": 33,
       "dms": [
@@ -653,7 +653,7 @@ window.DASHBOARD_DATA = {
     {
       "rm_name": "จริยา รัตนติน",
       "total_loss": 1740.4,
-      "loss_pct": 26.6,
+      "loss_pct": 26.5,
       "neg_bills_count": 68,
       "branches_affected": 38,
       "dms": [
@@ -964,7 +964,7 @@ window.DASHBOARD_DATA = {
     {
       "rm_name": "ฐานพัฒน์ แสงจง",
       "total_loss": 722.55,
-      "loss_pct": 11.1,
+      "loss_pct": 11.0,
       "neg_bills_count": 36,
       "branches_affected": 21,
       "dms": [
@@ -1426,12 +1426,12 @@ window.DASHBOARD_DATA = {
     {
       "iprod": "8858839615023",
       "name": "น้ำมันปาล์มโอลีอินตราปานทิพย์1l.",
-      "total_qty": 44.0,
-      "bills_count": 20,
+      "total_qty": 50.0,
+      "bills_count": 21,
       "normal_cost": 47.25,
       "normal_price": 50.0,
-      "total_line_cost": 2079.0,
-      "total_line_amt": 2200.0
+      "total_line_cost": 2362.5,
+      "total_line_amt": 2500.0
     },
     {
       "iprod": "8850180010045",
@@ -1454,6 +1454,16 @@ window.DASHBOARD_DATA = {
       "total_line_amt": 1836.0
     },
     {
+      "iprod": "0901400003",
+      "name": "น้ำยาล้างจาน500ml.solly",
+      "total_qty": 8.0,
+      "bills_count": 8,
+      "normal_cost": 6.84,
+      "normal_price": 10.0,
+      "total_line_cost": 54.72,
+      "total_line_amt": 50.0
+    },
+    {
       "iprod": "8850002026322",
       "name": "น้ำยาปรับผ้านุ่มไฮคลาส ฮานาบูเก้500/450ml.สีม่วง",
       "total_qty": 24.0,
@@ -1472,16 +1482,6 @@ window.DASHBOARD_DATA = {
       "normal_price": 10.0,
       "total_line_cost": 116.34,
       "total_line_amt": 140.0
-    },
-    {
-      "iprod": "0901400003",
-      "name": "น้ำยาล้างจาน500ml.solly",
-      "total_qty": 7.0,
-      "bills_count": 7,
-      "normal_cost": 6.84,
-      "normal_price": 10.0,
-      "total_line_cost": 47.88,
-      "total_line_amt": 50.0
     },
     {
       "iprod": "8855199149014",
@@ -8785,6 +8785,65 @@ window.DASHBOARD_DATA = {
           "solinetype": "N",
           "bldstatus": "N",
           "idesc": "ถุงมือผ้าเคลือบยางสีส้มLTP50"
+        }
+      ]
+    },
+    {
+      "sono": "BL1541-261121-0065",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "14:16:32",
+      "sotowhs": "154",
+      "uname": "68451",
+      "cstcode": "0887686284",
+      "soamount": 300.0,
+      "sodisc": 30.0,
+      "sodisc_bill": 30.0,
+      "sodisc_coupon": 30.0,
+      "sodisc_score": 0.0,
+      "sonetamt": 270.0,
+      "sototcost": 290.34,
+      "gp": -20.34,
+      "gp_pct": -7.53,
+      "loss_amt": 20.34,
+      "sostatus": "U",
+      "somethod": "NB",
+      "soremark": "COUPON",
+      "branch_name": "วังตะกอ",
+      "dm": "ธัญชนก  นันทสุคนธ์",
+      "rm": "จินตนา อินทะเสโน",
+      "province": "ชุมพร",
+      "items": [
+        {
+          "sono": "BL1541-261121-0065",
+          "soserlno": "001",
+          "iprod": "8858839615023",
+          "soqty": 6.0,
+          "sopricunit": 50.0,
+          "sopricdisc": 0.0,
+          "solineamt": 300.0,
+          "socstunit": 47.25,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": "น้ำมันปาล์มโอลีอินตราปานทิพย์1l."
+        },
+        {
+          "sono": "BL1541-261121-0065",
+          "soserlno": "002",
+          "iprod": "0901400003",
+          "soqty": 1.0,
+          "sopricunit": 10.0,
+          "sopricdisc": 10.0,
+          "solineamt": 0.0,
+          "socstunit": 6.84,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "K",
+          "bldstatus": "N",
+          "idesc": "น้ำยาล้างจาน500ml.solly"
         }
       ]
     },
@@ -19577,6 +19636,49 @@ window.DASHBOARD_DATA = {
           "solinetype": "N",
           "bldstatus": "N",
           "idesc": "ยาแก้ปวดซาร่าเม็ด"
+        }
+      ]
+    },
+    {
+      "sono": "BL0511-261121-0078",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "14:16:14",
+      "sotowhs": "051",
+      "uname": "67619",
+      "cstcode": "62208",
+      "soamount": 20.0,
+      "sodisc": 6.0,
+      "sodisc_bill": 0.0,
+      "sodisc_coupon": 0.0,
+      "sodisc_score": 6.0,
+      "sonetamt": 14.0,
+      "sototcost": 14.34,
+      "gp": -0.34,
+      "gp_pct": -2.43,
+      "loss_amt": 0.34,
+      "sostatus": "U",
+      "somethod": "NM",
+      "soremark": "-",
+      "branch_name": "คลองยาง",
+      "dm": "ณัฐกมล พิมเสน",
+      "rm": "จินตนา อินทะเสโน",
+      "province": "กระบี่",
+      "items": [
+        {
+          "sono": "BL0511-261121-0078",
+          "soserlno": "001",
+          "iprod": "4902430414722",
+          "soqty": 1.0,
+          "sopricunit": 20.0,
+          "sopricdisc": 0.0,
+          "solineamt": 20.0,
+          "socstunit": 14.34,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": null
         }
       ]
     },
@@ -26977,6 +27079,65 @@ window.DASHBOARD_DATA = {
       ]
     },
     {
+      "sono": "BL1541-261121-0065",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "14:16:32",
+      "sotowhs": "154",
+      "uname": "68451",
+      "cstcode": "0887686284",
+      "soamount": 300.0,
+      "sodisc": 30.0,
+      "sodisc_bill": 30.0,
+      "sodisc_coupon": 30.0,
+      "sodisc_score": 0.0,
+      "sonetamt": 270.0,
+      "sototcost": 290.34,
+      "gp": -20.34,
+      "gp_pct": -7.53,
+      "loss_amt": 20.34,
+      "sostatus": "U",
+      "somethod": "NB",
+      "soremark": "COUPON",
+      "branch_name": "วังตะกอ",
+      "dm": "ธัญชนก  นันทสุคนธ์",
+      "rm": "จินตนา อินทะเสโน",
+      "province": "ชุมพร",
+      "items": [
+        {
+          "sono": "BL1541-261121-0065",
+          "soserlno": "001",
+          "iprod": "8858839615023",
+          "soqty": 6.0,
+          "sopricunit": 50.0,
+          "sopricdisc": 0.0,
+          "solineamt": 300.0,
+          "socstunit": 47.25,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": "น้ำมันปาล์มโอลีอินตราปานทิพย์1l."
+        },
+        {
+          "sono": "BL1541-261121-0065",
+          "soserlno": "002",
+          "iprod": "0901400003",
+          "soqty": 1.0,
+          "sopricunit": 10.0,
+          "sopricdisc": 10.0,
+          "solineamt": 0.0,
+          "socstunit": 6.84,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "K",
+          "bldstatus": "N",
+          "idesc": "น้ำยาล้างจาน500ml.solly"
+        }
+      ]
+    },
+    {
       "sono": "BL1971-261121-0099",
       "sodate": "2026-11-21 00:00:00",
       "sotime": "12:44:57",
@@ -37769,6 +37930,49 @@ window.DASHBOARD_DATA = {
       ]
     },
     {
+      "sono": "BL0511-261121-0078",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "14:16:14",
+      "sotowhs": "051",
+      "uname": "67619",
+      "cstcode": "62208",
+      "soamount": 20.0,
+      "sodisc": 6.0,
+      "sodisc_bill": 0.0,
+      "sodisc_coupon": 0.0,
+      "sodisc_score": 6.0,
+      "sonetamt": 14.0,
+      "sototcost": 14.34,
+      "gp": -0.34,
+      "gp_pct": -2.43,
+      "loss_amt": 0.34,
+      "sostatus": "U",
+      "somethod": "NM",
+      "soremark": "-",
+      "branch_name": "คลองยาง",
+      "dm": "ณัฐกมล พิมเสน",
+      "rm": "จินตนา อินทะเสโน",
+      "province": "กระบี่",
+      "items": [
+        {
+          "sono": "BL0511-261121-0078",
+          "soserlno": "001",
+          "iprod": "4902430414722",
+          "soqty": 1.0,
+          "sopricunit": 20.0,
+          "sopricdisc": 0.0,
+          "solineamt": 20.0,
+          "socstunit": 14.34,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": null
+        }
+      ]
+    },
+    {
       "sono": "BL2351-261121-0075",
       "sodate": "2026-11-21 00:00:00",
       "sotime": "10:39:10",
@@ -38001,6 +38205,33 @@ window.DASHBOARD_DATA = {
     }
   ],
   "coupon_pairs": [
+    {
+      "cstcode": "0887686284",
+      "branch_code": "154",
+      "branch_name": "วังตะกอ",
+      "rm": "จินตนา อินทะเสโน",
+      "dm": "ธัญชนก  นันทสุคนธ์",
+      "coupon_amt": 30.0,
+      "time_diff": "283 น. 10 วิ",
+      "is_split": false,
+      "b1_sono": "BL1541-261121-0018",
+      "b1_time": "9:33:22",
+      "b1_net": 300.0,
+      "b1_cost": 290.34,
+      "b1_gp": 9.66,
+      "b1_gp_pct": 3.22,
+      "b2_sono": "BL1541-261121-0065",
+      "b2_time": "14:16:32",
+      "b2_net": 270.0,
+      "b2_cost": 290.34,
+      "b2_gp": -20.34,
+      "b2_gp_pct": -7.53,
+      "comb_net": 570.0,
+      "comb_cost": 580.68,
+      "comb_gp": -10.68,
+      "comb_gp_pct": -1.87,
+      "is_net_profit": false
+    },
     {
       "cstcode": "261121140235991",
       "branch_code": "107",
@@ -41540,40 +41771,40 @@ window.DASHBOARD_DATA = {
     }
   ],
   "coupon_pair_summary": {
-    "total_pairs": 131,
+    "total_pairs": 132,
     "net_profit_count": 120,
-    "net_profit_pct": 91.6,
-    "net_loss_count": 11,
-    "net_loss_pct": 8.4,
+    "net_profit_pct": 90.9,
+    "net_loss_count": 12,
+    "net_loss_pct": 9.1,
     "split_bill_count": 71,
-    "split_bill_pct": 54.2,
-    "total_b1_net": 132081.0,
-    "total_b1_cost": 92767.52,
-    "total_b1_gp": 39313.48,
-    "total_b2_net": 15690.0,
-    "total_b2_cost": 19934.45,
-    "total_b2_gp": -4244.45,
-    "total_combined_net": 147771.0,
-    "total_combined_cost": 112701.97,
-    "total_combined_gp": 35069.03,
-    "overall_comb_gp_pct": 23.73
+    "split_bill_pct": 53.8,
+    "total_b1_net": 132381.0,
+    "total_b1_cost": 93057.86,
+    "total_b1_gp": 39323.14,
+    "total_b2_net": 15960.0,
+    "total_b2_cost": 20224.79,
+    "total_b2_gp": -4264.79,
+    "total_combined_net": 148341.0,
+    "total_combined_cost": 113282.65,
+    "total_combined_gp": 35058.35,
+    "overall_comb_gp_pct": 23.63
   },
   "campaign_summary": {
     "start_date": "2026-11-01",
     "kpis": {
-      "total_sales_generated": 13659938.0,
-      "total_cost": 10292913.8,
-      "total_net_gp": 3367024.2,
+      "total_sales_generated": 13661188.0,
+      "total_cost": 10293968.31,
+      "total_net_gp": 3367219.69,
       "net_gp_pct": 24.65,
-      "total_discount_spent": 711930.0,
+      "total_discount_spent": 712010.0,
       "sales_roi_multiplier": 19.19,
       "gp_roi_multiplier": 4.73,
-      "total_coupons_issued": 170901,
-      "total_issued_amount": 4259270.0,
-      "total_coupons_used": 18750,
-      "total_used_amount": 711930.0,
+      "total_coupons_issued": 170918,
+      "total_issued_amount": 4259840.0,
+      "total_coupons_used": 18753,
+      "total_used_amount": 712010.0,
       "overall_redemption_rate": 10.97,
-      "unique_customers": 16919
+      "unique_customers": 16921
     },
     "funnel": [
       {
@@ -41588,26 +41819,26 @@ window.DASHBOARD_DATA = {
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 50.0,
-        "issued_cnt": 11318,
-        "issued_amt": 565900.0,
+        "issued_cnt": 11324,
+        "issued_amt": 566200.0,
         "used_cnt": 3828,
         "used_amt": 191400.0,
-        "redemption_pct": 33.82
+        "redemption_pct": 33.8
       },
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 30.0,
-        "issued_cnt": 22491,
-        "issued_amt": 674730.0,
-        "used_cnt": 3777,
-        "used_amt": 113310.0,
-        "redemption_pct": 16.79
+        "issued_cnt": 22496,
+        "issued_amt": 674880.0,
+        "used_cnt": 3779,
+        "used_amt": 113370.0,
+        "redemption_pct": 16.8
       },
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 20.0,
-        "issued_cnt": 29932,
-        "issued_amt": 598640.0,
+        "issued_cnt": 29938,
+        "issued_amt": 598760.0,
         "used_cnt": 2874,
         "used_amt": 57480.0,
         "redemption_pct": 9.6
@@ -41617,9 +41848,9 @@ window.DASHBOARD_DATA = {
         "couponamt": 20.0,
         "issued_cnt": 103700,
         "issued_amt": 2074000.0,
-        "used_cnt": 5967,
-        "used_amt": 119340.0,
-        "redemption_pct": 5.75
+        "used_cnt": 5968,
+        "used_amt": 119360.0,
+        "redemption_pct": 5.76
       }
     ],
     "timing_groups": [
@@ -41639,14 +41870,14 @@ window.DASHBOARD_DATA = {
       {
         "timing_group": "NO_B1",
         "label": "🎁 คูปองวันเกิด / คูปองแจกพิเศษ (ไม่ผูกบิลก่อนหน้า)",
-        "pair_count": 5967,
-        "unique_customers": 5967,
-        "discount_spent": 119340.0,
+        "pair_count": 5968,
+        "unique_customers": 5968,
+        "discount_spent": 119360.0,
         "b1_sales": 0.0,
-        "b2_sales": 2151070.0,
-        "total_sales": 2151070.0,
-        "total_cost": 1606169.95,
-        "combined_net_gp": 544900.05,
+        "b2_sales": 2151255.0,
+        "total_sales": 2151255.0,
+        "total_cost": 1606308.69,
+        "combined_net_gp": 544946.31,
         "combined_gp_pct": 25.33
       },
       {
@@ -41665,27 +41896,27 @@ window.DASHBOARD_DATA = {
       {
         "timing_group": "SAME_DAY_LATER",
         "label": "🕒 ซื้อซ้ำในวันเดียวกัน (> 10 นาที)",
-        "pair_count": 3083,
+        "pair_count": 3084,
         "unique_customers": 3014,
-        "discount_spent": 161810.0,
-        "b1_sales": 2686866.0,
-        "b2_sales": 616875.0,
-        "total_sales": 3303741.0,
-        "total_cost": 2446896.1,
-        "combined_net_gp": 856844.9,
-        "combined_gp_pct": 25.94
+        "discount_spent": 161840.0,
+        "b1_sales": 2687166.0,
+        "b2_sales": 617145.0,
+        "total_sales": 3304311.0,
+        "total_cost": 2447476.78,
+        "combined_net_gp": 856834.22,
+        "combined_gp_pct": 25.93
       },
       {
         "timing_group": "SPLIT_BILL_10M",
         "label": "⚡ แยกบิลซื้อซ้ำทันที (≤ 10 นาที)",
-        "pair_count": 5693,
-        "unique_customers": 5396,
-        "discount_spent": 285650.0,
-        "b1_sales": 4130773.0,
-        "b2_sales": 964663.0,
-        "total_sales": 5095436.0,
-        "total_cost": 3905904.81,
-        "combined_net_gp": 1189531.19,
+        "pair_count": 5694,
+        "unique_customers": 5397,
+        "discount_spent": 285680.0,
+        "b1_sales": 4131123.0,
+        "b2_sales": 964808.0,
+        "total_sales": 5095931.0,
+        "total_cost": 3906239.9,
+        "combined_net_gp": 1189691.1,
         "combined_gp_pct": 23.35
       }
     ]
