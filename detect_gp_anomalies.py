@@ -589,6 +589,8 @@ def run_detection():
         comb_c = b1_c + b2_c
         comb_gp = comb_s - comb_c
         comb_gp_pct = round(comb_gp / comb_s * 100, 2) if comb_s > 0 else 0
+        b1_g = b1_s - b1_c
+        b1_g_pct = round(b1_g / b1_s * 100, 2) if b1_s > 0 else 0
         d_spent = Decimal(str(tr['discount_spent'] or 0))
         tot_camp_sales += comb_s
         tot_camp_cost += comb_c
@@ -601,6 +603,8 @@ def run_detection():
             'unique_customers': int(tr['unique_customers']),
             'discount_spent': float(d_spent),
             'b1_sales': float(b1_s),
+            'b1_gp': float(b1_g),
+            'b1_gp_pct': float(b1_g_pct),
             'b2_sales': float(b2_s),
             'total_sales': float(comb_s),
             'total_cost': float(comb_c),
@@ -667,6 +671,8 @@ def run_detection():
             'unique_customers': int(unique_members_cnt),
             'discount_spent': float(tot_camp_disc),
             'b1_sales': sum(t['b1_sales'] for t in timing_list),
+            'b1_gp': sum(t.get('b1_gp', 0) for t in timing_list),
+            'b1_gp_pct': round(sum(t.get('b1_gp', 0) for t in timing_list) / sum(t['b1_sales'] for t in timing_list) * 100, 2) if sum(t['b1_sales'] for t in timing_list) > 0 else 0,
             'b2_sales': sum(t['b2_sales'] for t in timing_list),
             'total_sales': float(tot_camp_sales),
             'total_gp': float(tot_camp_gp),
