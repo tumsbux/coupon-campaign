@@ -460,6 +460,7 @@ def run_detection():
         LEFT JOIN bl_header b1 ON cc.billissue = b1.sono
         LEFT JOIN bl_header b2 ON cc.billuse = b2.sono
         WHERE (cc.begdate >= %s OR cc.created_at >= %s)
+          AND cc.coupontype NOT LIKE '%BIRTHDAY%'
           AND (b1.sotowhs NOT IN ('901', '0901') OR b1.sotowhs IS NULL)
           AND (b2.sotowhs NOT IN ('901', '0901') OR b2.sotowhs IS NULL)
         GROUP BY cc.coupontype, cc.couponamt
@@ -561,6 +562,7 @@ def run_detection():
         JOIN bl_header b2 ON cc.billuse = b2.sono
         LEFT JOIN bl_header b1 ON cc.billissue = b1.sono
         WHERE (cc.begdate >= %s OR b2.sodate >= %s)
+          AND cc.coupontype NOT LIKE '%BIRTHDAY%'
           AND b2.sotowhs NOT IN ('901', '0901')
         GROUP BY timing_group
     """, (start_date, start_date))
@@ -615,6 +617,7 @@ def run_detection():
         FROM customer_coupon cc
         JOIN bl_header b2 ON cc.billuse = b2.sono
         WHERE (cc.begdate >= %s OR b2.sodate >= %s)
+          AND cc.coupontype NOT LIKE '%BIRTHDAY%'
           AND b2.sotowhs NOT IN ('901', '0901')
     """, (start_date, start_date))
     unique_members_cnt = cur.fetchone()['total_unique_members'] or 0
