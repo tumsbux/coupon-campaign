@@ -441,16 +441,29 @@ def run_detection():
     # 8. Query Campaign Marketing Summary (Tab 5)
     cur.execute("""
         SELECT 
-            coupontype,
-            couponamt,
+            cc.coupontype,
+            cc.couponamt,
             COUNT(*) as issued_cnt,
-            SUM(couponamt) as issued_amt,
-            SUM(CASE WHEN billuse IS NOT NULL AND TRIM(billuse) != '' THEN 1 ELSE 0 END) as used_cnt,
-            SUM(CASE WHEN billuse IS NOT NULL AND TRIM(billuse) != '' THEN couponamt ELSE 0 END) as used_amt
-        FROM customer_coupon
-        WHERE begdate >= %s OR created_at >= %s
-        GROUP BY coupontype, couponamt
-        ORDER BY couponamt DESC
+            SUM(cc.couponamt) as issued_amt,
+            -- Bill 1 (Issued bills)
+            COUNT(DISTINCT cc.billissue) as b1_bill_cnt,
+            SUM(IFNULL(b1.sonetamt, 0)) as b1_net_sales,
+            SUM(IFNULL(b1.sototcost, 0)) as b1_cost,
+            SUM(IFNULL(b1.sonetamt - b1.sototcost, 0)) as b1_gp,
+            -- Bill 2 (Used bills)
+            SUM(CASE WHEN cc.billuse IS NOT NULL AND TRIM(cc.billuse) != '' THEN 1 ELSE 0 END) as used_cnt,
+            SUM(CASE WHEN cc.billuse IS NOT NULL AND TRIM(cc.billuse) != '' THEN cc.couponamt ELSE 0 END) as used_amt,
+            SUM(IFNULL(b2.sonetamt, 0)) as b2_net_sales,
+            SUM(IFNULL(b2.sototcost, 0)) as b2_cost,
+            SUM(IFNULL(b2.sonetamt - b2.sototcost, 0)) as b2_gp
+        FROM customer_coupon cc
+        LEFT JOIN bl_header b1 ON cc.billissue = b1.sono
+        LEFT JOIN bl_header b2 ON cc.billuse = b2.sono
+        WHERE (cc.begdate >= %s OR cc.created_at >= %s)
+          AND (b1.sotowhs NOT IN ('901', '0901') OR b1.sotowhs IS NULL)
+          AND (b2.sotowhs NOT IN ('901', '0901') OR b2.sotowhs IS NULL)
+        GROUP BY cc.coupontype, cc.couponamt
+        ORDER BY cc.couponamt DESC
     """, (start_date, start_date))
     funnel_rows = cur.fetchall()
 
@@ -458,25 +471,71 @@ def run_detection():
     total_issued_amount = Decimal('0.00')
     total_used_count = 0
     total_used_amount = Decimal('0.00')
+    tot_funnel_b1_sales = Decimal('0.00')
+    tot_funnel_b1_gp = Decimal('0.00')
+    tot_funnel_b2_sales = Decimal('0.00')
+    tot_funnel_b2_gp = Decimal('0.00')
+    tot_funnel_sales = Decimal('0.00')
+    tot_funnel_gp = Decimal('0.00')
+
+    # Preliminary pass for totals
+    for fr in funnel_rows:
+        b1_s = Decimal(str(fr['b1_net_sales'] or 0))
+        b2_s = Decimal(str(fr['b2_net_sales'] or 0))
+        b1_g = Decimal(str(fr['b1_gp'] or 0))
+        b2_g = Decimal(str(fr['b2_gp'] or 0))
+        comb_s = b1_s + b2_s
+        comb_g = b1_g + b2_g
+        tot_funnel_b1_sales += b1_s
+        tot_funnel_b1_gp += b1_g
+        tot_funnel_b2_sales += b2_s
+        tot_funnel_b2_gp += b2_g
+        tot_funnel_sales += comb_s
+        tot_funnel_gp += comb_g
+
     funnel_list = []
     for fr in funnel_rows:
         i_cnt = int(fr['issued_cnt'] or 0)
         i_amt = Decimal(str(fr['issued_amt'] or 0))
         u_cnt = int(fr['used_cnt'] or 0)
         u_amt = Decimal(str(fr['used_amt'] or 0))
+        b1_s = Decimal(str(fr['b1_net_sales'] or 0))
+        b1_g = Decimal(str(fr['b1_gp'] or 0))
+        b2_s = Decimal(str(fr['b2_net_sales'] or 0))
+        b2_g = Decimal(str(fr['b2_gp'] or 0))
+        comb_s = b1_s + b2_s
+        comb_g = b1_g + b2_g
+
         red_pct = round(u_cnt / i_cnt * 100, 2) if i_cnt > 0 else 0
+        b1_gp_pct = round(b1_g / b1_s * 100, 2) if b1_s > 0 else 0
+        b2_gp_pct = round(b2_g / b2_s * 100, 2) if b2_s > 0 else 0
+        comb_margin = round(comb_g / comb_s * 100, 2) if comb_s > 0 else 0
+        sales_share = round(comb_s / tot_funnel_sales * 100, 2) if tot_funnel_sales > 0 else 0
+
         total_issued_count += i_cnt
         total_issued_amount += i_amt
         total_used_count += u_cnt
         total_used_amount += u_amt
+
         funnel_list.append({
             'coupontype': fr['coupontype'],
             'couponamt': float(fr['couponamt']),
             'issued_cnt': i_cnt,
             'issued_amt': float(i_amt),
+            'b1_bill_cnt': int(fr['b1_bill_cnt'] or 0),
+            'b1_net_sales': float(b1_s),
+            'b1_gp': float(b1_g),
+            'b1_gp_pct': float(b1_gp_pct),
             'used_cnt': u_cnt,
             'used_amt': float(u_amt),
-            'redemption_pct': float(red_pct)
+            'redemption_pct': float(red_pct),
+            'b2_net_sales': float(b2_s),
+            'b2_gp': float(b2_g),
+            'b2_gp_pct': float(b2_gp_pct),
+            'total_sales': float(comb_s),
+            'sales_share_pct': float(sales_share),
+            'total_gp': float(comb_g),
+            'combined_margin_pct': float(comb_margin)
         })
 
     cur.execute("""
@@ -547,6 +606,10 @@ def run_detection():
             'combined_gp_pct': float(comb_gp_pct)
         })
 
+    # Add sales share to timing list
+    for t in timing_list:
+        t['sales_share_pct'] = round(t['total_sales'] / float(tot_camp_sales) * 100, 2) if tot_camp_sales > 0 else 0
+
     cur.execute("""
         SELECT COUNT(DISTINCT cc.cstcode) as total_unique_members
         FROM customer_coupon cc
@@ -564,13 +627,14 @@ def run_detection():
     campaign_summary = {
         'start_date': start_date,
         'kpis': {
-            'total_sales_generated': float(tot_camp_sales),
-            'total_cost': float(tot_camp_cost),
-            'total_net_gp': float(tot_camp_gp),
-            'net_gp_pct': float(camp_net_margin),
-            'total_discount_spent': float(tot_camp_disc),
-            'sales_roi_multiplier': float(sales_multiplier),
-            'gp_roi_multiplier': float(gp_multiplier),
+            'total_sales_generated': float(tot_funnel_sales),
+            'total_b1_sales': float(tot_funnel_b1_sales),
+            'total_b2_sales': float(tot_funnel_b2_sales),
+            'total_net_gp': float(tot_funnel_gp),
+            'net_gp_pct': round(float(tot_funnel_gp) / float(tot_funnel_sales) * 100, 2) if tot_funnel_sales > 0 else 0,
+            'total_discount_spent': float(total_used_amount),
+            'sales_roi_multiplier': round(float(tot_funnel_sales) / float(total_used_amount), 2) if total_used_amount > 0 else 0,
+            'gp_roi_multiplier': round(float(tot_funnel_gp) / float(total_used_amount), 2) if total_used_amount > 0 else 0,
             'total_coupons_issued': total_issued_count,
             'total_issued_amount': float(total_issued_amount),
             'total_coupons_used': total_used_count,
@@ -579,7 +643,32 @@ def run_detection():
             'unique_customers': int(unique_members_cnt)
         },
         'funnel': funnel_list,
-        'timing_groups': timing_list
+        'funnel_totals': {
+            'total_issued_cnt': total_issued_count,
+            'total_issued_amt': float(total_issued_amount),
+            'total_b1_sales': float(tot_funnel_b1_sales),
+            'total_b1_gp': float(tot_funnel_b1_gp),
+            'b1_margin_pct': round(float(tot_funnel_b1_gp) / float(tot_funnel_b1_sales) * 100, 2) if tot_funnel_b1_sales > 0 else 0,
+            'total_used_cnt': total_used_count,
+            'total_used_amt': float(total_used_amount),
+            'redemption_pct': float(overall_redemption_rate),
+            'total_b2_sales': float(tot_funnel_b2_sales),
+            'total_b2_gp': float(tot_funnel_b2_gp),
+            'total_sales': float(tot_funnel_sales),
+            'total_gp': float(tot_funnel_gp),
+            'combined_margin_pct': round(float(tot_funnel_gp) / float(tot_funnel_sales) * 100, 2) if tot_funnel_sales > 0 else 0
+        },
+        'timing_groups': timing_list,
+        'timing_totals': {
+            'pair_count': sum(t['pair_count'] for t in timing_list),
+            'unique_customers': int(unique_members_cnt),
+            'discount_spent': float(tot_camp_disc),
+            'b1_sales': sum(t['b1_sales'] for t in timing_list),
+            'b2_sales': sum(t['b2_sales'] for t in timing_list),
+            'total_sales': float(tot_camp_sales),
+            'total_gp': float(tot_camp_gp),
+            'combined_gp_pct': round(float(tot_camp_gp) / float(tot_camp_sales) * 100, 2) if tot_camp_sales > 0 else 0
+        }
     }
 
     conn.close()
