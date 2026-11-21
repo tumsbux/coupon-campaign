@@ -1,5 +1,5 @@
 window.DASHBOARD_DATA = {
-  "generated_at": "2026-11-21 16:20:10",
+  "generated_at": "2026-11-21 16:25:58",
   "target_date": "2026-11-21",
   "available_dates": [
     "2026-11-21",
@@ -29,20 +29,20 @@ window.DASHBOARD_DATA = {
     {
       "date": "2026-11-21",
       "active_branches": 206,
-      "total_bills": 19393,
-      "gross_sales": 2853602.77,
-      "total_discount": 45467.7,
-      "total_coupon": 24260.0,
-      "total_score_disc": 21165.0,
-      "total_net_sales": 2808135.0,
-      "total_cost": 1970022.01,
-      "total_gp": 838112.99,
-      "gp_pct": 29.85,
-      "neg_bills_count": 384,
-      "neg_bills_pct": 1.98,
-      "total_loss_amount": 9097.35,
+      "total_bills": 19646,
+      "gross_sales": 2890433.78,
+      "total_discount": 46055.71,
+      "total_coupon": 24630.0,
+      "total_score_disc": 21383.0,
+      "total_net_sales": 2844378.0,
+      "total_cost": 1995064.78,
+      "total_gp": 849313.22,
+      "gp_pct": 29.86,
+      "neg_bills_count": 388,
+      "neg_bills_pct": 1.97,
+      "total_loss_amount": 9183.53,
       "min_time": "6:53:21",
-      "max_time": "16:19:38"
+      "max_time": "16:25:30"
     },
     {
       "date": "2026-11-20",
@@ -411,35 +411,128 @@ window.DASHBOARD_DATA = {
       "summary": {
         "date": "2026-11-21",
         "active_branches": 206,
-        "total_bills": 19393,
-        "gross_sales": 2853602.77,
-        "total_discount": 45467.7,
-        "total_coupon": 24260.0,
-        "total_score_disc": 21165.0,
-        "total_net_sales": 2808135.0,
-        "total_cost": 1970022.01,
-        "total_gp": 838112.99,
-        "gp_pct": 29.85,
-        "neg_bills_count": 384,
-        "neg_bills_pct": 1.98,
-        "total_loss_amount": 9097.35,
+        "total_bills": 19646,
+        "gross_sales": 2890433.78,
+        "total_discount": 46055.71,
+        "total_coupon": 24630.0,
+        "total_score_disc": 21383.0,
+        "total_net_sales": 2844378.0,
+        "total_cost": 1995064.78,
+        "total_gp": 849313.22,
+        "gp_pct": 29.86,
+        "neg_bills_count": 388,
+        "neg_bills_pct": 1.97,
+        "total_loss_amount": 9183.53,
         "min_time": "6:53:21",
-        "max_time": "16:19:38",
+        "max_time": "16:25:30",
         "branches_affected_count": 151
       },
       "rm_summary": [
         {
           "rm_name": "จินตนา อินทะเสโน",
-          "total_loss": 3309.89,
-          "loss_pct": 36.4,
-          "neg_bills_count": 150,
+          "total_loss": 3355.62,
+          "loss_pct": 36.5,
+          "neg_bills_count": 152,
           "branches_affected": 49,
           "dms": [
             {
+              "dm_name": "ณัฐกมล พิมเสน",
+              "total_loss": 1111.87,
+              "loss_pct_in_rm": 33.1,
+              "neg_bills_count": 37,
+              "branches_affected": 12,
+              "branches": [
+                {
+                  "branch_code": "086",
+                  "branch_name": "คลองเขม้า",
+                  "province": "กระบี่",
+                  "total_loss": 211.5,
+                  "neg_bills_count": 9
+                },
+                {
+                  "branch_code": "026",
+                  "branch_name": "เขาพนม",
+                  "province": "กระบี่",
+                  "total_loss": 142.87,
+                  "neg_bills_count": 2
+                },
+                {
+                  "branch_code": "006",
+                  "branch_name": "ชัยบุรี",
+                  "province": "สุราษฎร์ธานี",
+                  "total_loss": 141.11,
+                  "neg_bills_count": 5
+                },
+                {
+                  "branch_code": "013",
+                  "branch_name": "คลองท่อม",
+                  "province": "กระบี่",
+                  "total_loss": 129.85,
+                  "neg_bills_count": 4
+                },
+                {
+                  "branch_code": "049",
+                  "branch_name": "ลำทับใหม่",
+                  "province": "กระบี่",
+                  "total_loss": 110.86,
+                  "neg_bills_count": 1
+                },
+                {
+                  "branch_code": "130",
+                  "branch_name": "บางสวรรค์2",
+                  "province": "สุราษฎร์ธานี",
+                  "total_loss": 99.62,
+                  "neg_bills_count": 4
+                },
+                {
+                  "branch_code": "153",
+                  "branch_name": "อ่าวลึกใต้",
+                  "province": "กระบี่",
+                  "total_loss": 90.9,
+                  "neg_bills_count": 3
+                },
+                {
+                  "branch_code": "067",
+                  "branch_name": "ปลายพระยา",
+                  "province": "กระบี่",
+                  "total_loss": 67.87,
+                  "neg_bills_count": 1
+                },
+                {
+                  "branch_code": "047",
+                  "branch_name": "พรุดินนา",
+                  "province": "กระบี่",
+                  "total_loss": 52.83,
+                  "neg_bills_count": 2
+                },
+                {
+                  "branch_code": "083",
+                  "branch_name": "หนองดี",
+                  "province": "นครศรีธรรมราช",
+                  "total_loss": 31.0,
+                  "neg_bills_count": 1
+                },
+                {
+                  "branch_code": "051",
+                  "branch_name": "คลองยาง",
+                  "province": "กระบี่",
+                  "total_loss": 29.09,
+                  "neg_bills_count": 4
+                },
+                {
+                  "branch_code": "084",
+                  "branch_name": "ถ้ำพรรณรา",
+                  "province": "นครศรีธรรมราช",
+                  "total_loss": 4.37,
+                  "neg_bills_count": 1
+                }
+              ]
+            },
+            {
               "dm_name": "ญาณิศา แด่หวา",
-              "total_loss": 1081.07,
-              "loss_pct_in_rm": 32.7,
-              "neg_bills_count": 67,
+              "total_loss": 1083.8,
+              "loss_pct_in_rm": 32.3,
+              "neg_bills_count": 68,
               "branches_affected": 14,
               "branches": [
                 {
@@ -453,8 +546,8 @@ window.DASHBOARD_DATA = {
                   "branch_code": "029",
                   "branch_name": "ควนสามัคคี",
                   "province": "สุราษฎร์ธานี",
-                  "total_loss": 276.28,
-                  "neg_bills_count": 14
+                  "total_loss": 279.01,
+                  "neg_bills_count": 15
                 },
                 {
                   "branch_code": "001",
@@ -543,102 +636,9 @@ window.DASHBOARD_DATA = {
               ]
             },
             {
-              "dm_name": "ณัฐกมล พิมเสน",
-              "total_loss": 1068.87,
-              "loss_pct_in_rm": 32.3,
-              "neg_bills_count": 36,
-              "branches_affected": 12,
-              "branches": [
-                {
-                  "branch_code": "086",
-                  "branch_name": "คลองเขม้า",
-                  "province": "กระบี่",
-                  "total_loss": 211.5,
-                  "neg_bills_count": 9
-                },
-                {
-                  "branch_code": "026",
-                  "branch_name": "เขาพนม",
-                  "province": "กระบี่",
-                  "total_loss": 142.87,
-                  "neg_bills_count": 2
-                },
-                {
-                  "branch_code": "006",
-                  "branch_name": "ชัยบุรี",
-                  "province": "สุราษฎร์ธานี",
-                  "total_loss": 141.11,
-                  "neg_bills_count": 5
-                },
-                {
-                  "branch_code": "013",
-                  "branch_name": "คลองท่อม",
-                  "province": "กระบี่",
-                  "total_loss": 129.85,
-                  "neg_bills_count": 4
-                },
-                {
-                  "branch_code": "049",
-                  "branch_name": "ลำทับใหม่",
-                  "province": "กระบี่",
-                  "total_loss": 110.86,
-                  "neg_bills_count": 1
-                },
-                {
-                  "branch_code": "130",
-                  "branch_name": "บางสวรรค์2",
-                  "province": "สุราษฎร์ธานี",
-                  "total_loss": 99.62,
-                  "neg_bills_count": 4
-                },
-                {
-                  "branch_code": "067",
-                  "branch_name": "ปลายพระยา",
-                  "province": "กระบี่",
-                  "total_loss": 67.87,
-                  "neg_bills_count": 1
-                },
-                {
-                  "branch_code": "047",
-                  "branch_name": "พรุดินนา",
-                  "province": "กระบี่",
-                  "total_loss": 52.83,
-                  "neg_bills_count": 2
-                },
-                {
-                  "branch_code": "153",
-                  "branch_name": "อ่าวลึกใต้",
-                  "province": "กระบี่",
-                  "total_loss": 47.9,
-                  "neg_bills_count": 2
-                },
-                {
-                  "branch_code": "083",
-                  "branch_name": "หนองดี",
-                  "province": "นครศรีธรรมราช",
-                  "total_loss": 31.0,
-                  "neg_bills_count": 1
-                },
-                {
-                  "branch_code": "051",
-                  "branch_name": "คลองยาง",
-                  "province": "กระบี่",
-                  "total_loss": 29.09,
-                  "neg_bills_count": 4
-                },
-                {
-                  "branch_code": "084",
-                  "branch_name": "ถ้ำพรรณรา",
-                  "province": "นครศรีธรรมราช",
-                  "total_loss": 4.37,
-                  "neg_bills_count": 1
-                }
-              ]
-            },
-            {
               "dm_name": "แพรทิพย์ จันทร์ปาน",
               "total_loss": 672.58,
-              "loss_pct_in_rm": 20.3,
+              "loss_pct_in_rm": 20.0,
               "neg_bills_count": 26,
               "branches_affected": 12,
               "branches": [
@@ -731,7 +731,7 @@ window.DASHBOARD_DATA = {
             {
               "dm_name": "ธัญชนก  นันทสุคนธ์",
               "total_loss": 487.37,
-              "loss_pct_in_rm": 14.7,
+              "loss_pct_in_rm": 14.5,
               "neg_bills_count": 21,
               "branches_affected": 11,
               "branches": [
@@ -818,15 +818,15 @@ window.DASHBOARD_DATA = {
         },
         {
           "rm_name": "สุพรรษา นามตาปี",
-          "total_loss": 2504.66,
+          "total_loss": 2523.36,
           "loss_pct": 27.5,
-          "neg_bills_count": 98,
+          "neg_bills_count": 99,
           "branches_affected": 38,
           "dms": [
             {
               "dm_name": "ลัดดาวรรณ์ สามารถ",
               "total_loss": 1008.25,
-              "loss_pct_in_rm": 40.3,
+              "loss_pct_in_rm": 40.0,
               "neg_bills_count": 27,
               "branches_affected": 12,
               "branches": [
@@ -918,9 +918,9 @@ window.DASHBOARD_DATA = {
             },
             {
               "dm_name": "วิไลลักษณ์ เลิศไกร",
-              "total_loss": 598.05,
-              "loss_pct_in_rm": 23.9,
-              "neg_bills_count": 16,
+              "total_loss": 616.75,
+              "loss_pct_in_rm": 24.4,
+              "neg_bills_count": 17,
               "branches_affected": 8,
               "branches": [
                 {
@@ -966,17 +966,17 @@ window.DASHBOARD_DATA = {
                   "neg_bills_count": 2
                 },
                 {
+                  "branch_code": "002",
+                  "branch_name": "พระแสง",
+                  "province": "สุราษฎร์ธานี",
+                  "total_loss": 28.25,
+                  "neg_bills_count": 2
+                },
+                {
                   "branch_code": "066",
                   "branch_name": "ทับละมุ",
                   "province": "พังงา",
                   "total_loss": 13.72,
-                  "neg_bills_count": 1
-                },
-                {
-                  "branch_code": "002",
-                  "branch_name": "พระแสง",
-                  "province": "สุราษฎร์ธานี",
-                  "total_loss": 9.55,
                   "neg_bills_count": 1
                 }
               ]
@@ -984,7 +984,7 @@ window.DASHBOARD_DATA = {
             {
               "dm_name": "ปาลิตา ศรีปัญญา",
               "total_loss": 464.41,
-              "loss_pct_in_rm": 18.5,
+              "loss_pct_in_rm": 18.4,
               "neg_bills_count": 25,
               "branches_affected": 8,
               "branches": [
@@ -1049,7 +1049,7 @@ window.DASHBOARD_DATA = {
             {
               "dm_name": "เรวดี พรหมอินทร์",
               "total_loss": 433.95,
-              "loss_pct_in_rm": 17.3,
+              "loss_pct_in_rm": 17.2,
               "neg_bills_count": 30,
               "branches_affected": 10,
               "branches": [
@@ -1129,15 +1129,15 @@ window.DASHBOARD_DATA = {
         },
         {
           "rm_name": "จริยา รัตนติน",
-          "total_loss": 2186.88,
+          "total_loss": 2208.63,
           "loss_pct": 24.0,
-          "neg_bills_count": 87,
+          "neg_bills_count": 88,
           "branches_affected": 40,
           "dms": [
             {
               "dm_name": "สุชาวดี บัวเผียน",
               "total_loss": 894.74,
-              "loss_pct_in_rm": 40.9,
+              "loss_pct_in_rm": 40.5,
               "neg_bills_count": 29,
               "branches_affected": 11,
               "branches": [
@@ -1223,7 +1223,7 @@ window.DASHBOARD_DATA = {
             {
               "dm_name": "ชณารัศมิ์ พลเดช",
               "total_loss": 589.54,
-              "loss_pct_in_rm": 27.0,
+              "loss_pct_in_rm": 26.7,
               "neg_bills_count": 22,
               "branches_affected": 11,
               "branches": [
@@ -1308,9 +1308,9 @@ window.DASHBOARD_DATA = {
             },
             {
               "dm_name": "วรรณนภา ยอดแก้ว",
-              "total_loss": 447.02,
-              "loss_pct_in_rm": 20.4,
-              "neg_bills_count": 24,
+              "total_loss": 468.77,
+              "loss_pct_in_rm": 21.2,
+              "neg_bills_count": 25,
               "branches_affected": 13,
               "branches": [
                 {
@@ -1324,8 +1324,8 @@ window.DASHBOARD_DATA = {
                   "branch_code": "176",
                   "branch_name": "กองบิน 56",
                   "province": "สงขลา",
-                  "total_loss": 78.18,
-                  "neg_bills_count": 2
+                  "total_loss": 99.93,
+                  "neg_bills_count": 3
                 },
                 {
                   "branch_code": "203",
@@ -1409,7 +1409,7 @@ window.DASHBOARD_DATA = {
             {
               "dm_name": "มณฑา กู้เกียรติเดชสกุล",
               "total_loss": 255.58,
-              "loss_pct_in_rm": 11.7,
+              "loss_pct_in_rm": 11.6,
               "neg_bills_count": 12,
               "branches_affected": 5,
               "branches": [
@@ -1455,7 +1455,7 @@ window.DASHBOARD_DATA = {
         {
           "rm_name": "ฐานพัฒน์ แสงจง",
           "total_loss": 1095.92,
-          "loss_pct": 12.0,
+          "loss_pct": 11.9,
           "neg_bills_count": 49,
           "branches_affected": 24,
           "dms": [
@@ -1697,9 +1697,9 @@ window.DASHBOARD_DATA = {
           "dm": "ญาณิศา แด่หวา",
           "rm": "จินตนา อินทะเสโน",
           "province": "สุราษฎร์ธานี",
-          "neg_bills_count": 14,
-          "total_loss": 276.28000000000003,
-          "total_net_sales": 1152.0,
+          "neg_bills_count": 15,
+          "total_loss": 279.01000000000005,
+          "total_net_sales": 1182.0,
           "total_coupon": 50.0
         },
         {
@@ -1938,12 +1938,12 @@ window.DASHBOARD_DATA = {
         {
           "iprod": "8858839615023",
           "name": "น้ำมันปาล์มโอลีอินตราปานทิพย์1l.",
-          "total_qty": 69.0,
-          "bills_count": 27,
+          "total_qty": 72.0,
+          "bills_count": 28,
           "normal_cost": 47.25,
           "normal_price": 50.0,
-          "total_line_cost": 3260.25,
-          "total_line_amt": 3450.0
+          "total_line_cost": 3402.0,
+          "total_line_amt": 3600.0
         },
         {
           "iprod": "8850210000039",
@@ -6674,6 +6674,49 @@ window.DASHBOARD_DATA = {
           ]
         },
         {
+          "sono": "BL1531-261121-0082",
+          "sodate": "2026-11-21 00:00:00",
+          "sotime": "16:20:34",
+          "sotowhs": "153",
+          "uname": "69254",
+          "cstcode": "0910436446",
+          "soamount": 177.0,
+          "sodisc": 100.0,
+          "sodisc_bill": 100.0,
+          "sodisc_coupon": 100.0,
+          "sodisc_score": 0.0,
+          "sonetamt": 77.0,
+          "sototcost": 120.0,
+          "gp": -43.0,
+          "gp_pct": -55.84,
+          "loss_amt": 43.0,
+          "sostatus": "U",
+          "somethod": "NM",
+          "soremark": "COUPON",
+          "branch_name": "อ่าวลึกใต้",
+          "dm": "ณัฐกมล พิมเสน",
+          "rm": "จินตนา อินทะเสโน",
+          "province": "กระบี่",
+          "items": [
+            {
+              "sono": "BL1531-261121-0082",
+              "soserlno": "001",
+              "iprod": "0800100002003",
+              "soqty": 3.0,
+              "sopricunit": 59.0,
+              "sopricdisc": 0.0,
+              "solineamt": 177.0,
+              "socstunit": 40.0,
+              "untcode": "020",
+              "soretflag": "N",
+              "retqty": 0.0,
+              "solinetype": "N",
+              "bldstatus": "N",
+              "idesc": "กางเกงกีฬาคละแบบ(Grand Sport)"
+            }
+          ]
+        },
+        {
           "sono": "BL0291-261121-0054",
           "sodate": "2026-11-21 00:00:00",
           "sotime": "12:27:46",
@@ -11236,6 +11279,49 @@ window.DASHBOARD_DATA = {
           ]
         },
         {
+          "sono": "BL1761-261121-0093",
+          "sodate": "2026-11-21 00:00:00",
+          "sotime": "16:23:55",
+          "sotowhs": "176",
+          "uname": "66256",
+          "cstcode": "0936794735",
+          "soamount": 150.0,
+          "sodisc": 30.0,
+          "sodisc_bill": 30.0,
+          "sodisc_coupon": 30.0,
+          "sodisc_score": 0.0,
+          "sonetamt": 120.0,
+          "sototcost": 141.75,
+          "gp": -21.75,
+          "gp_pct": -18.13,
+          "loss_amt": 21.75,
+          "sostatus": "U",
+          "somethod": "NM",
+          "soremark": "COUPON",
+          "branch_name": "กองบิน 56",
+          "dm": "วรรณนภา ยอดแก้ว",
+          "rm": "จริยา รัตนติน",
+          "province": "สงขลา",
+          "items": [
+            {
+              "sono": "BL1761-261121-0093",
+              "soserlno": "001",
+              "iprod": "8858839615023",
+              "soqty": 3.0,
+              "sopricunit": 50.0,
+              "sopricdisc": 0.0,
+              "solineamt": 150.0,
+              "socstunit": 47.25,
+              "untcode": "020",
+              "soretflag": "N",
+              "retqty": 0.0,
+              "solinetype": "N",
+              "bldstatus": "N",
+              "idesc": "น้ำมันปาล์มโอลีอินตราปานทิพย์1l."
+            }
+          ]
+        },
+        {
           "sono": "BL0131-261121-0056",
           "sodate": "2026-11-21 00:00:00",
           "sotime": "13:37:22",
@@ -12626,6 +12712,49 @@ window.DASHBOARD_DATA = {
               "solinetype": "N",
               "bldstatus": "N",
               "idesc": null
+            }
+          ]
+        },
+        {
+          "sono": "BL0021-261121-0076",
+          "sodate": "2026-11-21 00:00:00",
+          "sotime": "16:10:17",
+          "sotowhs": "002",
+          "uname": "69376",
+          "cstcode": "0899727734",
+          "soamount": 40.0,
+          "sodisc": 26.0,
+          "sodisc_bill": 0.0,
+          "sodisc_coupon": 0.0,
+          "sodisc_score": 26.0,
+          "sonetamt": 14.0,
+          "sototcost": 32.7,
+          "gp": -18.7,
+          "gp_pct": -133.57,
+          "loss_amt": 18.7,
+          "sostatus": "U",
+          "somethod": "NB",
+          "soremark": "-",
+          "branch_name": "พระแสง",
+          "dm": "วิไลลักษณ์ เลิศไกร",
+          "rm": "สุพรรษา นามตาปี",
+          "province": "สุราษฎร์ธานี",
+          "items": [
+            {
+              "sono": "BL0021-261121-0076",
+              "soserlno": "001",
+              "iprod": "8888240051165",
+              "soqty": 10.0,
+              "sopricunit": 4.0,
+              "sopricdisc": 0.0,
+              "solineamt": 40.0,
+              "socstunit": 3.27,
+              "untcode": "007",
+              "soretflag": "N",
+              "retqty": 0.0,
+              "solinetype": "N",
+              "bldstatus": "N",
+              "idesc": "กาแฟซุปเปอร์คอฟฟี่มิกซ์3in1(3ซอง12บาท)"
             }
           ]
         },
@@ -18101,138 +18230,63 @@ window.DASHBOARD_DATA = {
               "idesc": null
             }
           ]
-        },
-        {
-          "sono": "BL2141-261121-0058",
-          "sodate": "2026-11-21 00:00:00",
-          "sotime": "10:56:25",
-          "sotowhs": "214",
-          "uname": "69206",
-          "cstcode": "0636019525",
-          "soamount": 150.0,
-          "sodisc": 50.0,
-          "sodisc_bill": 50.0,
-          "sodisc_coupon": 50.0,
-          "sodisc_score": 0.0,
-          "sonetamt": 100.0,
-          "sototcost": 107.36,
-          "gp": -7.36,
-          "gp_pct": -7.36,
-          "loss_amt": 7.36,
-          "sostatus": "U",
-          "somethod": "NM",
-          "soremark": "COUPON",
-          "branch_name": "สี่แยกวัดโหนด (นศ-35)",
-          "dm": "ปาลิตา ศรีปัญญา",
-          "rm": "สุพรรษา นามตาปี",
-          "province": "นครศรีธรรมราช",
-          "items": [
-            {
-              "sono": "BL2141-261121-0058",
-              "soserlno": "001",
-              "iprod": "8859828677626",
-              "soqty": 1.0,
-              "sopricunit": 150.0,
-              "sopricdisc": 0.0,
-              "solineamt": 150.0,
-              "socstunit": 107.36,
-              "untcode": "020",
-              "soretflag": "N",
-              "retqty": 0.0,
-              "solinetype": "N",
-              "bldstatus": "N",
-              "idesc": null
-            }
-          ]
-        },
-        {
-          "sono": "BL0411-261121-0015",
-          "sodate": "2026-11-21 00:00:00",
-          "sotime": "10:24:19",
-          "sotowhs": "041",
-          "uname": "68374",
-          "cstcode": "0637684729",
-          "soamount": 20.0,
-          "sodisc": 13.0,
-          "sodisc_bill": 0.0,
-          "sodisc_coupon": 0.0,
-          "sodisc_score": 13.0,
-          "sonetamt": 7.0,
-          "sototcost": 14.33,
-          "gp": -7.33,
-          "gp_pct": -104.71,
-          "loss_amt": 7.33,
-          "sostatus": "U",
-          "somethod": "NB",
-          "soremark": "-",
-          "branch_name": "การุณราษฏร์",
-          "dm": "ญาณิศา แด่หวา",
-          "rm": "จินตนา อินทะเสโน",
-          "province": "สุราษฎร์ธานี",
-          "items": [
-            {
-              "sono": "BL0411-261121-0015",
-              "soserlno": "001",
-              "iprod": "8852000034",
-              "soqty": 1.0,
-              "sopricunit": 20.0,
-              "sopricdisc": 0.0,
-              "solineamt": 20.0,
-              "socstunit": 14.33,
-              "untcode": "031",
-              "soretflag": "N",
-              "retqty": 0.0,
-              "solinetype": "N",
-              "bldstatus": "N",
-              "idesc": "บิลเงินสด1*3No.3No.T34(ซีเคเดย์)"
-            }
-          ]
-        },
-        {
-          "sono": "BL1171-261121-0006",
-          "sodate": "2026-11-21 00:00:00",
-          "sotime": "8:34:01",
-          "sotowhs": "117",
-          "uname": "68748",
-          "cstcode": "63364",
-          "soamount": 10.0,
-          "sodisc": 9.0,
-          "sodisc_bill": 0.0,
-          "sodisc_coupon": 0.0,
-          "sodisc_score": 9.0,
-          "sonetamt": 1.0,
-          "sototcost": 8.31,
-          "gp": -7.31,
-          "gp_pct": -731.0,
-          "loss_amt": 7.31,
-          "sostatus": "U",
-          "somethod": "NM",
-          "soremark": "-",
-          "branch_name": "โมถ่าย",
-          "dm": "ปาลิตา ศรีปัญญา",
-          "rm": "สุพรรษา นามตาปี",
-          "province": "สุราษฎร์ธานี",
-          "items": [
-            {
-              "sono": "BL1171-261121-0006",
-              "soserlno": "001",
-              "iprod": "8858718770270",
-              "soqty": 1.0,
-              "sopricunit": 10.0,
-              "sopricdisc": 0.0,
-              "solineamt": 10.0,
-              "socstunit": 8.31,
-              "untcode": "009",
-              "soretflag": "N",
-              "retqty": 0.0,
-              "solinetype": "N",
-              "bldstatus": "N",
-              "idesc": null
-            }
-          ]
         }
       ],
       "coupon_pairs": [
+        {
+          "cstcode": "0936794735",
+          "branch_code": "176",
+          "branch_name": "กองบิน 56",
+          "rm": "จริยา รัตนติน",
+          "dm": "วรรณนภา ยอดแก้ว",
+          "coupon_amt": 30.0,
+          "time_diff": "8 น. 27 วิ",
+          "is_split": true,
+          "b1_sono": "BL1761-261121-0092",
+          "b1_time": "16:15:28",
+          "b1_net": 637.0,
+          "b1_cost": 496.04,
+          "b1_gp": 140.96,
+          "b1_gp_pct": 22.13,
+          "b2_sono": "BL1761-261121-0093",
+          "b2_time": "16:23:55",
+          "b2_net": 120.0,
+          "b2_cost": 141.75,
+          "b2_gp": -21.75,
+          "b2_gp_pct": -18.13,
+          "comb_net": 757.0,
+          "comb_cost": 637.79,
+          "comb_gp": 119.21,
+          "comb_gp_pct": 15.75,
+          "is_net_profit": true
+        },
+        {
+          "cstcode": "0910436446",
+          "branch_code": "153",
+          "branch_name": "อ่าวลึกใต้",
+          "rm": "จินตนา อินทะเสโน",
+          "dm": "ณัฐกมล พิมเสน",
+          "coupon_amt": 100.0,
+          "time_diff": "13 น. 36 วิ",
+          "is_split": false,
+          "b1_sono": "BL1531-261121-0079",
+          "b1_time": "16:06:58",
+          "b1_net": 2308.0,
+          "b1_cost": 1900.39,
+          "b1_gp": 407.61,
+          "b1_gp_pct": 17.66,
+          "b2_sono": "BL1531-261121-0082",
+          "b2_time": "16:20:34",
+          "b2_net": 77.0,
+          "b2_cost": 120.0,
+          "b2_gp": -43.0,
+          "b2_gp_pct": -55.84,
+          "comb_net": 2385.0,
+          "comb_cost": 2020.39,
+          "comb_gp": 364.61,
+          "comb_gp_pct": 15.29,
+          "is_net_profit": true
+        },
         {
           "cstcode": "0934701178",
           "branch_code": "042",
@@ -23149,23 +23203,23 @@ window.DASHBOARD_DATA = {
         }
       ],
       "coupon_pair_summary": {
-        "total_pairs": 182,
-        "net_profit_count": 166,
-        "net_profit_pct": 91.2,
+        "total_pairs": 184,
+        "net_profit_count": 168,
+        "net_profit_pct": 91.3,
         "net_loss_count": 16,
-        "net_loss_pct": 8.8,
-        "split_bill_count": 100,
+        "net_loss_pct": 8.7,
+        "split_bill_count": 101,
         "split_bill_pct": 54.9,
-        "total_b1_net": 185401.0,
-        "total_b1_cost": 130898.54,
-        "total_b1_gp": 54502.46,
-        "total_b2_net": 21226.0,
-        "total_b2_cost": 27371.21,
-        "total_b2_gp": -6145.21,
-        "total_combined_net": 206627.0,
-        "total_combined_cost": 158269.75,
-        "total_combined_gp": 48357.25,
-        "overall_comb_gp_pct": 23.4
+        "total_b1_net": 188346.0,
+        "total_b1_cost": 133294.97,
+        "total_b1_gp": 55051.03,
+        "total_b2_net": 21423.0,
+        "total_b2_cost": 27632.96,
+        "total_b2_gp": -6209.96,
+        "total_combined_net": 209769.0,
+        "total_combined_cost": 160927.93,
+        "total_combined_gp": 48841.07000000001,
+        "overall_comb_gp_pct": 23.28
       }
     },
     "2026-11-20": {
@@ -372366,35 +372420,128 @@ window.DASHBOARD_DATA = {
   "summary": {
     "date": "2026-11-21",
     "active_branches": 206,
-    "total_bills": 19393,
-    "gross_sales": 2853602.77,
-    "total_discount": 45467.7,
-    "total_coupon": 24260.0,
-    "total_score_disc": 21165.0,
-    "total_net_sales": 2808135.0,
-    "total_cost": 1970022.01,
-    "total_gp": 838112.99,
-    "gp_pct": 29.85,
-    "neg_bills_count": 384,
-    "neg_bills_pct": 1.98,
-    "total_loss_amount": 9097.35,
+    "total_bills": 19646,
+    "gross_sales": 2890433.78,
+    "total_discount": 46055.71,
+    "total_coupon": 24630.0,
+    "total_score_disc": 21383.0,
+    "total_net_sales": 2844378.0,
+    "total_cost": 1995064.78,
+    "total_gp": 849313.22,
+    "gp_pct": 29.86,
+    "neg_bills_count": 388,
+    "neg_bills_pct": 1.97,
+    "total_loss_amount": 9183.53,
     "min_time": "6:53:21",
-    "max_time": "16:19:38",
+    "max_time": "16:25:30",
     "branches_affected_count": 151
   },
   "rm_summary": [
     {
       "rm_name": "จินตนา อินทะเสโน",
-      "total_loss": 3309.89,
-      "loss_pct": 36.4,
-      "neg_bills_count": 150,
+      "total_loss": 3355.62,
+      "loss_pct": 36.5,
+      "neg_bills_count": 152,
       "branches_affected": 49,
       "dms": [
         {
+          "dm_name": "ณัฐกมล พิมเสน",
+          "total_loss": 1111.87,
+          "loss_pct_in_rm": 33.1,
+          "neg_bills_count": 37,
+          "branches_affected": 12,
+          "branches": [
+            {
+              "branch_code": "086",
+              "branch_name": "คลองเขม้า",
+              "province": "กระบี่",
+              "total_loss": 211.5,
+              "neg_bills_count": 9
+            },
+            {
+              "branch_code": "026",
+              "branch_name": "เขาพนม",
+              "province": "กระบี่",
+              "total_loss": 142.87,
+              "neg_bills_count": 2
+            },
+            {
+              "branch_code": "006",
+              "branch_name": "ชัยบุรี",
+              "province": "สุราษฎร์ธานี",
+              "total_loss": 141.11,
+              "neg_bills_count": 5
+            },
+            {
+              "branch_code": "013",
+              "branch_name": "คลองท่อม",
+              "province": "กระบี่",
+              "total_loss": 129.85,
+              "neg_bills_count": 4
+            },
+            {
+              "branch_code": "049",
+              "branch_name": "ลำทับใหม่",
+              "province": "กระบี่",
+              "total_loss": 110.86,
+              "neg_bills_count": 1
+            },
+            {
+              "branch_code": "130",
+              "branch_name": "บางสวรรค์2",
+              "province": "สุราษฎร์ธานี",
+              "total_loss": 99.62,
+              "neg_bills_count": 4
+            },
+            {
+              "branch_code": "153",
+              "branch_name": "อ่าวลึกใต้",
+              "province": "กระบี่",
+              "total_loss": 90.9,
+              "neg_bills_count": 3
+            },
+            {
+              "branch_code": "067",
+              "branch_name": "ปลายพระยา",
+              "province": "กระบี่",
+              "total_loss": 67.87,
+              "neg_bills_count": 1
+            },
+            {
+              "branch_code": "047",
+              "branch_name": "พรุดินนา",
+              "province": "กระบี่",
+              "total_loss": 52.83,
+              "neg_bills_count": 2
+            },
+            {
+              "branch_code": "083",
+              "branch_name": "หนองดี",
+              "province": "นครศรีธรรมราช",
+              "total_loss": 31.0,
+              "neg_bills_count": 1
+            },
+            {
+              "branch_code": "051",
+              "branch_name": "คลองยาง",
+              "province": "กระบี่",
+              "total_loss": 29.09,
+              "neg_bills_count": 4
+            },
+            {
+              "branch_code": "084",
+              "branch_name": "ถ้ำพรรณรา",
+              "province": "นครศรีธรรมราช",
+              "total_loss": 4.37,
+              "neg_bills_count": 1
+            }
+          ]
+        },
+        {
           "dm_name": "ญาณิศา แด่หวา",
-          "total_loss": 1081.07,
-          "loss_pct_in_rm": 32.7,
-          "neg_bills_count": 67,
+          "total_loss": 1083.8,
+          "loss_pct_in_rm": 32.3,
+          "neg_bills_count": 68,
           "branches_affected": 14,
           "branches": [
             {
@@ -372408,8 +372555,8 @@ window.DASHBOARD_DATA = {
               "branch_code": "029",
               "branch_name": "ควนสามัคคี",
               "province": "สุราษฎร์ธานี",
-              "total_loss": 276.28,
-              "neg_bills_count": 14
+              "total_loss": 279.01,
+              "neg_bills_count": 15
             },
             {
               "branch_code": "001",
@@ -372498,102 +372645,9 @@ window.DASHBOARD_DATA = {
           ]
         },
         {
-          "dm_name": "ณัฐกมล พิมเสน",
-          "total_loss": 1068.87,
-          "loss_pct_in_rm": 32.3,
-          "neg_bills_count": 36,
-          "branches_affected": 12,
-          "branches": [
-            {
-              "branch_code": "086",
-              "branch_name": "คลองเขม้า",
-              "province": "กระบี่",
-              "total_loss": 211.5,
-              "neg_bills_count": 9
-            },
-            {
-              "branch_code": "026",
-              "branch_name": "เขาพนม",
-              "province": "กระบี่",
-              "total_loss": 142.87,
-              "neg_bills_count": 2
-            },
-            {
-              "branch_code": "006",
-              "branch_name": "ชัยบุรี",
-              "province": "สุราษฎร์ธานี",
-              "total_loss": 141.11,
-              "neg_bills_count": 5
-            },
-            {
-              "branch_code": "013",
-              "branch_name": "คลองท่อม",
-              "province": "กระบี่",
-              "total_loss": 129.85,
-              "neg_bills_count": 4
-            },
-            {
-              "branch_code": "049",
-              "branch_name": "ลำทับใหม่",
-              "province": "กระบี่",
-              "total_loss": 110.86,
-              "neg_bills_count": 1
-            },
-            {
-              "branch_code": "130",
-              "branch_name": "บางสวรรค์2",
-              "province": "สุราษฎร์ธานี",
-              "total_loss": 99.62,
-              "neg_bills_count": 4
-            },
-            {
-              "branch_code": "067",
-              "branch_name": "ปลายพระยา",
-              "province": "กระบี่",
-              "total_loss": 67.87,
-              "neg_bills_count": 1
-            },
-            {
-              "branch_code": "047",
-              "branch_name": "พรุดินนา",
-              "province": "กระบี่",
-              "total_loss": 52.83,
-              "neg_bills_count": 2
-            },
-            {
-              "branch_code": "153",
-              "branch_name": "อ่าวลึกใต้",
-              "province": "กระบี่",
-              "total_loss": 47.9,
-              "neg_bills_count": 2
-            },
-            {
-              "branch_code": "083",
-              "branch_name": "หนองดี",
-              "province": "นครศรีธรรมราช",
-              "total_loss": 31.0,
-              "neg_bills_count": 1
-            },
-            {
-              "branch_code": "051",
-              "branch_name": "คลองยาง",
-              "province": "กระบี่",
-              "total_loss": 29.09,
-              "neg_bills_count": 4
-            },
-            {
-              "branch_code": "084",
-              "branch_name": "ถ้ำพรรณรา",
-              "province": "นครศรีธรรมราช",
-              "total_loss": 4.37,
-              "neg_bills_count": 1
-            }
-          ]
-        },
-        {
           "dm_name": "แพรทิพย์ จันทร์ปาน",
           "total_loss": 672.58,
-          "loss_pct_in_rm": 20.3,
+          "loss_pct_in_rm": 20.0,
           "neg_bills_count": 26,
           "branches_affected": 12,
           "branches": [
@@ -372686,7 +372740,7 @@ window.DASHBOARD_DATA = {
         {
           "dm_name": "ธัญชนก  นันทสุคนธ์",
           "total_loss": 487.37,
-          "loss_pct_in_rm": 14.7,
+          "loss_pct_in_rm": 14.5,
           "neg_bills_count": 21,
           "branches_affected": 11,
           "branches": [
@@ -372773,15 +372827,15 @@ window.DASHBOARD_DATA = {
     },
     {
       "rm_name": "สุพรรษา นามตาปี",
-      "total_loss": 2504.66,
+      "total_loss": 2523.36,
       "loss_pct": 27.5,
-      "neg_bills_count": 98,
+      "neg_bills_count": 99,
       "branches_affected": 38,
       "dms": [
         {
           "dm_name": "ลัดดาวรรณ์ สามารถ",
           "total_loss": 1008.25,
-          "loss_pct_in_rm": 40.3,
+          "loss_pct_in_rm": 40.0,
           "neg_bills_count": 27,
           "branches_affected": 12,
           "branches": [
@@ -372873,9 +372927,9 @@ window.DASHBOARD_DATA = {
         },
         {
           "dm_name": "วิไลลักษณ์ เลิศไกร",
-          "total_loss": 598.05,
-          "loss_pct_in_rm": 23.9,
-          "neg_bills_count": 16,
+          "total_loss": 616.75,
+          "loss_pct_in_rm": 24.4,
+          "neg_bills_count": 17,
           "branches_affected": 8,
           "branches": [
             {
@@ -372921,17 +372975,17 @@ window.DASHBOARD_DATA = {
               "neg_bills_count": 2
             },
             {
+              "branch_code": "002",
+              "branch_name": "พระแสง",
+              "province": "สุราษฎร์ธานี",
+              "total_loss": 28.25,
+              "neg_bills_count": 2
+            },
+            {
               "branch_code": "066",
               "branch_name": "ทับละมุ",
               "province": "พังงา",
               "total_loss": 13.72,
-              "neg_bills_count": 1
-            },
-            {
-              "branch_code": "002",
-              "branch_name": "พระแสง",
-              "province": "สุราษฎร์ธานี",
-              "total_loss": 9.55,
               "neg_bills_count": 1
             }
           ]
@@ -372939,7 +372993,7 @@ window.DASHBOARD_DATA = {
         {
           "dm_name": "ปาลิตา ศรีปัญญา",
           "total_loss": 464.41,
-          "loss_pct_in_rm": 18.5,
+          "loss_pct_in_rm": 18.4,
           "neg_bills_count": 25,
           "branches_affected": 8,
           "branches": [
@@ -373004,7 +373058,7 @@ window.DASHBOARD_DATA = {
         {
           "dm_name": "เรวดี พรหมอินทร์",
           "total_loss": 433.95,
-          "loss_pct_in_rm": 17.3,
+          "loss_pct_in_rm": 17.2,
           "neg_bills_count": 30,
           "branches_affected": 10,
           "branches": [
@@ -373084,15 +373138,15 @@ window.DASHBOARD_DATA = {
     },
     {
       "rm_name": "จริยา รัตนติน",
-      "total_loss": 2186.88,
+      "total_loss": 2208.63,
       "loss_pct": 24.0,
-      "neg_bills_count": 87,
+      "neg_bills_count": 88,
       "branches_affected": 40,
       "dms": [
         {
           "dm_name": "สุชาวดี บัวเผียน",
           "total_loss": 894.74,
-          "loss_pct_in_rm": 40.9,
+          "loss_pct_in_rm": 40.5,
           "neg_bills_count": 29,
           "branches_affected": 11,
           "branches": [
@@ -373178,7 +373232,7 @@ window.DASHBOARD_DATA = {
         {
           "dm_name": "ชณารัศมิ์ พลเดช",
           "total_loss": 589.54,
-          "loss_pct_in_rm": 27.0,
+          "loss_pct_in_rm": 26.7,
           "neg_bills_count": 22,
           "branches_affected": 11,
           "branches": [
@@ -373263,9 +373317,9 @@ window.DASHBOARD_DATA = {
         },
         {
           "dm_name": "วรรณนภา ยอดแก้ว",
-          "total_loss": 447.02,
-          "loss_pct_in_rm": 20.4,
-          "neg_bills_count": 24,
+          "total_loss": 468.77,
+          "loss_pct_in_rm": 21.2,
+          "neg_bills_count": 25,
           "branches_affected": 13,
           "branches": [
             {
@@ -373279,8 +373333,8 @@ window.DASHBOARD_DATA = {
               "branch_code": "176",
               "branch_name": "กองบิน 56",
               "province": "สงขลา",
-              "total_loss": 78.18,
-              "neg_bills_count": 2
+              "total_loss": 99.93,
+              "neg_bills_count": 3
             },
             {
               "branch_code": "203",
@@ -373364,7 +373418,7 @@ window.DASHBOARD_DATA = {
         {
           "dm_name": "มณฑา กู้เกียรติเดชสกุล",
           "total_loss": 255.58,
-          "loss_pct_in_rm": 11.7,
+          "loss_pct_in_rm": 11.6,
           "neg_bills_count": 12,
           "branches_affected": 5,
           "branches": [
@@ -373410,7 +373464,7 @@ window.DASHBOARD_DATA = {
     {
       "rm_name": "ฐานพัฒน์ แสงจง",
       "total_loss": 1095.92,
-      "loss_pct": 12.0,
+      "loss_pct": 11.9,
       "neg_bills_count": 49,
       "branches_affected": 24,
       "dms": [
@@ -373652,9 +373706,9 @@ window.DASHBOARD_DATA = {
       "dm": "ญาณิศา แด่หวา",
       "rm": "จินตนา อินทะเสโน",
       "province": "สุราษฎร์ธานี",
-      "neg_bills_count": 14,
-      "total_loss": 276.28000000000003,
-      "total_net_sales": 1152.0,
+      "neg_bills_count": 15,
+      "total_loss": 279.01000000000005,
+      "total_net_sales": 1182.0,
       "total_coupon": 50.0
     },
     {
@@ -373893,12 +373947,12 @@ window.DASHBOARD_DATA = {
     {
       "iprod": "8858839615023",
       "name": "น้ำมันปาล์มโอลีอินตราปานทิพย์1l.",
-      "total_qty": 69.0,
-      "bills_count": 27,
+      "total_qty": 72.0,
+      "bills_count": 28,
       "normal_cost": 47.25,
       "normal_price": 50.0,
-      "total_line_cost": 3260.25,
-      "total_line_amt": 3450.0
+      "total_line_cost": 3402.0,
+      "total_line_amt": 3600.0
     },
     {
       "iprod": "8850210000039",
@@ -378629,6 +378683,49 @@ window.DASHBOARD_DATA = {
       ]
     },
     {
+      "sono": "BL1531-261121-0082",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "16:20:34",
+      "sotowhs": "153",
+      "uname": "69254",
+      "cstcode": "0910436446",
+      "soamount": 177.0,
+      "sodisc": 100.0,
+      "sodisc_bill": 100.0,
+      "sodisc_coupon": 100.0,
+      "sodisc_score": 0.0,
+      "sonetamt": 77.0,
+      "sototcost": 120.0,
+      "gp": -43.0,
+      "gp_pct": -55.84,
+      "loss_amt": 43.0,
+      "sostatus": "U",
+      "somethod": "NM",
+      "soremark": "COUPON",
+      "branch_name": "อ่าวลึกใต้",
+      "dm": "ณัฐกมล พิมเสน",
+      "rm": "จินตนา อินทะเสโน",
+      "province": "กระบี่",
+      "items": [
+        {
+          "sono": "BL1531-261121-0082",
+          "soserlno": "001",
+          "iprod": "0800100002003",
+          "soqty": 3.0,
+          "sopricunit": 59.0,
+          "sopricdisc": 0.0,
+          "solineamt": 177.0,
+          "socstunit": 40.0,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": "กางเกงกีฬาคละแบบ(Grand Sport)"
+        }
+      ]
+    },
+    {
       "sono": "BL0291-261121-0054",
       "sodate": "2026-11-21 00:00:00",
       "sotime": "12:27:46",
@@ -383191,6 +383288,49 @@ window.DASHBOARD_DATA = {
       ]
     },
     {
+      "sono": "BL1761-261121-0093",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "16:23:55",
+      "sotowhs": "176",
+      "uname": "66256",
+      "cstcode": "0936794735",
+      "soamount": 150.0,
+      "sodisc": 30.0,
+      "sodisc_bill": 30.0,
+      "sodisc_coupon": 30.0,
+      "sodisc_score": 0.0,
+      "sonetamt": 120.0,
+      "sototcost": 141.75,
+      "gp": -21.75,
+      "gp_pct": -18.13,
+      "loss_amt": 21.75,
+      "sostatus": "U",
+      "somethod": "NM",
+      "soremark": "COUPON",
+      "branch_name": "กองบิน 56",
+      "dm": "วรรณนภา ยอดแก้ว",
+      "rm": "จริยา รัตนติน",
+      "province": "สงขลา",
+      "items": [
+        {
+          "sono": "BL1761-261121-0093",
+          "soserlno": "001",
+          "iprod": "8858839615023",
+          "soqty": 3.0,
+          "sopricunit": 50.0,
+          "sopricdisc": 0.0,
+          "solineamt": 150.0,
+          "socstunit": 47.25,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": "น้ำมันปาล์มโอลีอินตราปานทิพย์1l."
+        }
+      ]
+    },
+    {
       "sono": "BL0131-261121-0056",
       "sodate": "2026-11-21 00:00:00",
       "sotime": "13:37:22",
@@ -384581,6 +384721,49 @@ window.DASHBOARD_DATA = {
           "solinetype": "N",
           "bldstatus": "N",
           "idesc": null
+        }
+      ]
+    },
+    {
+      "sono": "BL0021-261121-0076",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "16:10:17",
+      "sotowhs": "002",
+      "uname": "69376",
+      "cstcode": "0899727734",
+      "soamount": 40.0,
+      "sodisc": 26.0,
+      "sodisc_bill": 0.0,
+      "sodisc_coupon": 0.0,
+      "sodisc_score": 26.0,
+      "sonetamt": 14.0,
+      "sototcost": 32.7,
+      "gp": -18.7,
+      "gp_pct": -133.57,
+      "loss_amt": 18.7,
+      "sostatus": "U",
+      "somethod": "NB",
+      "soremark": "-",
+      "branch_name": "พระแสง",
+      "dm": "วิไลลักษณ์ เลิศไกร",
+      "rm": "สุพรรษา นามตาปี",
+      "province": "สุราษฎร์ธานี",
+      "items": [
+        {
+          "sono": "BL0021-261121-0076",
+          "soserlno": "001",
+          "iprod": "8888240051165",
+          "soqty": 10.0,
+          "sopricunit": 4.0,
+          "sopricdisc": 0.0,
+          "solineamt": 40.0,
+          "socstunit": 3.27,
+          "untcode": "007",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": "กาแฟซุปเปอร์คอฟฟี่มิกซ์3in1(3ซอง12บาท)"
         }
       ]
     },
@@ -390049,135 +390232,6 @@ window.DASHBOARD_DATA = {
           "solineamt": 150.0,
           "socstunit": 107.36,
           "untcode": "020",
-          "soretflag": "N",
-          "retqty": 0.0,
-          "solinetype": "N",
-          "bldstatus": "N",
-          "idesc": null
-        }
-      ]
-    },
-    {
-      "sono": "BL2141-261121-0058",
-      "sodate": "2026-11-21 00:00:00",
-      "sotime": "10:56:25",
-      "sotowhs": "214",
-      "uname": "69206",
-      "cstcode": "0636019525",
-      "soamount": 150.0,
-      "sodisc": 50.0,
-      "sodisc_bill": 50.0,
-      "sodisc_coupon": 50.0,
-      "sodisc_score": 0.0,
-      "sonetamt": 100.0,
-      "sototcost": 107.36,
-      "gp": -7.36,
-      "gp_pct": -7.36,
-      "loss_amt": 7.36,
-      "sostatus": "U",
-      "somethod": "NM",
-      "soremark": "COUPON",
-      "branch_name": "สี่แยกวัดโหนด (นศ-35)",
-      "dm": "ปาลิตา ศรีปัญญา",
-      "rm": "สุพรรษา นามตาปี",
-      "province": "นครศรีธรรมราช",
-      "items": [
-        {
-          "sono": "BL2141-261121-0058",
-          "soserlno": "001",
-          "iprod": "8859828677626",
-          "soqty": 1.0,
-          "sopricunit": 150.0,
-          "sopricdisc": 0.0,
-          "solineamt": 150.0,
-          "socstunit": 107.36,
-          "untcode": "020",
-          "soretflag": "N",
-          "retqty": 0.0,
-          "solinetype": "N",
-          "bldstatus": "N",
-          "idesc": null
-        }
-      ]
-    },
-    {
-      "sono": "BL0411-261121-0015",
-      "sodate": "2026-11-21 00:00:00",
-      "sotime": "10:24:19",
-      "sotowhs": "041",
-      "uname": "68374",
-      "cstcode": "0637684729",
-      "soamount": 20.0,
-      "sodisc": 13.0,
-      "sodisc_bill": 0.0,
-      "sodisc_coupon": 0.0,
-      "sodisc_score": 13.0,
-      "sonetamt": 7.0,
-      "sototcost": 14.33,
-      "gp": -7.33,
-      "gp_pct": -104.71,
-      "loss_amt": 7.33,
-      "sostatus": "U",
-      "somethod": "NB",
-      "soremark": "-",
-      "branch_name": "การุณราษฏร์",
-      "dm": "ญาณิศา แด่หวา",
-      "rm": "จินตนา อินทะเสโน",
-      "province": "สุราษฎร์ธานี",
-      "items": [
-        {
-          "sono": "BL0411-261121-0015",
-          "soserlno": "001",
-          "iprod": "8852000034",
-          "soqty": 1.0,
-          "sopricunit": 20.0,
-          "sopricdisc": 0.0,
-          "solineamt": 20.0,
-          "socstunit": 14.33,
-          "untcode": "031",
-          "soretflag": "N",
-          "retqty": 0.0,
-          "solinetype": "N",
-          "bldstatus": "N",
-          "idesc": "บิลเงินสด1*3No.3No.T34(ซีเคเดย์)"
-        }
-      ]
-    },
-    {
-      "sono": "BL1171-261121-0006",
-      "sodate": "2026-11-21 00:00:00",
-      "sotime": "8:34:01",
-      "sotowhs": "117",
-      "uname": "68748",
-      "cstcode": "63364",
-      "soamount": 10.0,
-      "sodisc": 9.0,
-      "sodisc_bill": 0.0,
-      "sodisc_coupon": 0.0,
-      "sodisc_score": 9.0,
-      "sonetamt": 1.0,
-      "sototcost": 8.31,
-      "gp": -7.31,
-      "gp_pct": -731.0,
-      "loss_amt": 7.31,
-      "sostatus": "U",
-      "somethod": "NM",
-      "soremark": "-",
-      "branch_name": "โมถ่าย",
-      "dm": "ปาลิตา ศรีปัญญา",
-      "rm": "สุพรรษา นามตาปี",
-      "province": "สุราษฎร์ธานี",
-      "items": [
-        {
-          "sono": "BL1171-261121-0006",
-          "soserlno": "001",
-          "iprod": "8858718770270",
-          "soqty": 1.0,
-          "sopricunit": 10.0,
-          "sopricdisc": 0.0,
-          "solineamt": 10.0,
-          "socstunit": 8.31,
-          "untcode": "009",
           "soretflag": "N",
           "retqty": 0.0,
           "solinetype": "N",
@@ -394725,6 +394779,49 @@ window.DASHBOARD_DATA = {
       ]
     },
     {
+      "sono": "BL1531-261121-0082",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "16:20:34",
+      "sotowhs": "153",
+      "uname": "69254",
+      "cstcode": "0910436446",
+      "soamount": 177.0,
+      "sodisc": 100.0,
+      "sodisc_bill": 100.0,
+      "sodisc_coupon": 100.0,
+      "sodisc_score": 0.0,
+      "sonetamt": 77.0,
+      "sototcost": 120.0,
+      "gp": -43.0,
+      "gp_pct": -55.84,
+      "loss_amt": 43.0,
+      "sostatus": "U",
+      "somethod": "NM",
+      "soremark": "COUPON",
+      "branch_name": "อ่าวลึกใต้",
+      "dm": "ณัฐกมล พิมเสน",
+      "rm": "จินตนา อินทะเสโน",
+      "province": "กระบี่",
+      "items": [
+        {
+          "sono": "BL1531-261121-0082",
+          "soserlno": "001",
+          "iprod": "0800100002003",
+          "soqty": 3.0,
+          "sopricunit": 59.0,
+          "sopricdisc": 0.0,
+          "solineamt": 177.0,
+          "socstunit": 40.0,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": "กางเกงกีฬาคละแบบ(Grand Sport)"
+        }
+      ]
+    },
+    {
       "sono": "BL0291-261121-0054",
       "sodate": "2026-11-21 00:00:00",
       "sotime": "12:27:46",
@@ -399287,6 +399384,49 @@ window.DASHBOARD_DATA = {
       ]
     },
     {
+      "sono": "BL1761-261121-0093",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "16:23:55",
+      "sotowhs": "176",
+      "uname": "66256",
+      "cstcode": "0936794735",
+      "soamount": 150.0,
+      "sodisc": 30.0,
+      "sodisc_bill": 30.0,
+      "sodisc_coupon": 30.0,
+      "sodisc_score": 0.0,
+      "sonetamt": 120.0,
+      "sototcost": 141.75,
+      "gp": -21.75,
+      "gp_pct": -18.13,
+      "loss_amt": 21.75,
+      "sostatus": "U",
+      "somethod": "NM",
+      "soremark": "COUPON",
+      "branch_name": "กองบิน 56",
+      "dm": "วรรณนภา ยอดแก้ว",
+      "rm": "จริยา รัตนติน",
+      "province": "สงขลา",
+      "items": [
+        {
+          "sono": "BL1761-261121-0093",
+          "soserlno": "001",
+          "iprod": "8858839615023",
+          "soqty": 3.0,
+          "sopricunit": 50.0,
+          "sopricdisc": 0.0,
+          "solineamt": 150.0,
+          "socstunit": 47.25,
+          "untcode": "020",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": "น้ำมันปาล์มโอลีอินตราปานทิพย์1l."
+        }
+      ]
+    },
+    {
       "sono": "BL0131-261121-0056",
       "sodate": "2026-11-21 00:00:00",
       "sotime": "13:37:22",
@@ -400677,6 +400817,49 @@ window.DASHBOARD_DATA = {
           "solinetype": "N",
           "bldstatus": "N",
           "idesc": null
+        }
+      ]
+    },
+    {
+      "sono": "BL0021-261121-0076",
+      "sodate": "2026-11-21 00:00:00",
+      "sotime": "16:10:17",
+      "sotowhs": "002",
+      "uname": "69376",
+      "cstcode": "0899727734",
+      "soamount": 40.0,
+      "sodisc": 26.0,
+      "sodisc_bill": 0.0,
+      "sodisc_coupon": 0.0,
+      "sodisc_score": 26.0,
+      "sonetamt": 14.0,
+      "sototcost": 32.7,
+      "gp": -18.7,
+      "gp_pct": -133.57,
+      "loss_amt": 18.7,
+      "sostatus": "U",
+      "somethod": "NB",
+      "soremark": "-",
+      "branch_name": "พระแสง",
+      "dm": "วิไลลักษณ์ เลิศไกร",
+      "rm": "สุพรรษา นามตาปี",
+      "province": "สุราษฎร์ธานี",
+      "items": [
+        {
+          "sono": "BL0021-261121-0076",
+          "soserlno": "001",
+          "iprod": "8888240051165",
+          "soqty": 10.0,
+          "sopricunit": 4.0,
+          "sopricdisc": 0.0,
+          "solineamt": 40.0,
+          "socstunit": 3.27,
+          "untcode": "007",
+          "soretflag": "N",
+          "retqty": 0.0,
+          "solinetype": "N",
+          "bldstatus": "N",
+          "idesc": "กาแฟซุปเปอร์คอฟฟี่มิกซ์3in1(3ซอง12บาท)"
         }
       ]
     },
@@ -406152,138 +406335,63 @@ window.DASHBOARD_DATA = {
           "idesc": null
         }
       ]
-    },
-    {
-      "sono": "BL2141-261121-0058",
-      "sodate": "2026-11-21 00:00:00",
-      "sotime": "10:56:25",
-      "sotowhs": "214",
-      "uname": "69206",
-      "cstcode": "0636019525",
-      "soamount": 150.0,
-      "sodisc": 50.0,
-      "sodisc_bill": 50.0,
-      "sodisc_coupon": 50.0,
-      "sodisc_score": 0.0,
-      "sonetamt": 100.0,
-      "sototcost": 107.36,
-      "gp": -7.36,
-      "gp_pct": -7.36,
-      "loss_amt": 7.36,
-      "sostatus": "U",
-      "somethod": "NM",
-      "soremark": "COUPON",
-      "branch_name": "สี่แยกวัดโหนด (นศ-35)",
-      "dm": "ปาลิตา ศรีปัญญา",
-      "rm": "สุพรรษา นามตาปี",
-      "province": "นครศรีธรรมราช",
-      "items": [
-        {
-          "sono": "BL2141-261121-0058",
-          "soserlno": "001",
-          "iprod": "8859828677626",
-          "soqty": 1.0,
-          "sopricunit": 150.0,
-          "sopricdisc": 0.0,
-          "solineamt": 150.0,
-          "socstunit": 107.36,
-          "untcode": "020",
-          "soretflag": "N",
-          "retqty": 0.0,
-          "solinetype": "N",
-          "bldstatus": "N",
-          "idesc": null
-        }
-      ]
-    },
-    {
-      "sono": "BL0411-261121-0015",
-      "sodate": "2026-11-21 00:00:00",
-      "sotime": "10:24:19",
-      "sotowhs": "041",
-      "uname": "68374",
-      "cstcode": "0637684729",
-      "soamount": 20.0,
-      "sodisc": 13.0,
-      "sodisc_bill": 0.0,
-      "sodisc_coupon": 0.0,
-      "sodisc_score": 13.0,
-      "sonetamt": 7.0,
-      "sototcost": 14.33,
-      "gp": -7.33,
-      "gp_pct": -104.71,
-      "loss_amt": 7.33,
-      "sostatus": "U",
-      "somethod": "NB",
-      "soremark": "-",
-      "branch_name": "การุณราษฏร์",
-      "dm": "ญาณิศา แด่หวา",
-      "rm": "จินตนา อินทะเสโน",
-      "province": "สุราษฎร์ธานี",
-      "items": [
-        {
-          "sono": "BL0411-261121-0015",
-          "soserlno": "001",
-          "iprod": "8852000034",
-          "soqty": 1.0,
-          "sopricunit": 20.0,
-          "sopricdisc": 0.0,
-          "solineamt": 20.0,
-          "socstunit": 14.33,
-          "untcode": "031",
-          "soretflag": "N",
-          "retqty": 0.0,
-          "solinetype": "N",
-          "bldstatus": "N",
-          "idesc": "บิลเงินสด1*3No.3No.T34(ซีเคเดย์)"
-        }
-      ]
-    },
-    {
-      "sono": "BL1171-261121-0006",
-      "sodate": "2026-11-21 00:00:00",
-      "sotime": "8:34:01",
-      "sotowhs": "117",
-      "uname": "68748",
-      "cstcode": "63364",
-      "soamount": 10.0,
-      "sodisc": 9.0,
-      "sodisc_bill": 0.0,
-      "sodisc_coupon": 0.0,
-      "sodisc_score": 9.0,
-      "sonetamt": 1.0,
-      "sototcost": 8.31,
-      "gp": -7.31,
-      "gp_pct": -731.0,
-      "loss_amt": 7.31,
-      "sostatus": "U",
-      "somethod": "NM",
-      "soremark": "-",
-      "branch_name": "โมถ่าย",
-      "dm": "ปาลิตา ศรีปัญญา",
-      "rm": "สุพรรษา นามตาปี",
-      "province": "สุราษฎร์ธานี",
-      "items": [
-        {
-          "sono": "BL1171-261121-0006",
-          "soserlno": "001",
-          "iprod": "8858718770270",
-          "soqty": 1.0,
-          "sopricunit": 10.0,
-          "sopricdisc": 0.0,
-          "solineamt": 10.0,
-          "socstunit": 8.31,
-          "untcode": "009",
-          "soretflag": "N",
-          "retqty": 0.0,
-          "solinetype": "N",
-          "bldstatus": "N",
-          "idesc": null
-        }
-      ]
     }
   ],
   "coupon_pairs": [
+    {
+      "cstcode": "0936794735",
+      "branch_code": "176",
+      "branch_name": "กองบิน 56",
+      "rm": "จริยา รัตนติน",
+      "dm": "วรรณนภา ยอดแก้ว",
+      "coupon_amt": 30.0,
+      "time_diff": "8 น. 27 วิ",
+      "is_split": true,
+      "b1_sono": "BL1761-261121-0092",
+      "b1_time": "16:15:28",
+      "b1_net": 637.0,
+      "b1_cost": 496.04,
+      "b1_gp": 140.96,
+      "b1_gp_pct": 22.13,
+      "b2_sono": "BL1761-261121-0093",
+      "b2_time": "16:23:55",
+      "b2_net": 120.0,
+      "b2_cost": 141.75,
+      "b2_gp": -21.75,
+      "b2_gp_pct": -18.13,
+      "comb_net": 757.0,
+      "comb_cost": 637.79,
+      "comb_gp": 119.21,
+      "comb_gp_pct": 15.75,
+      "is_net_profit": true
+    },
+    {
+      "cstcode": "0910436446",
+      "branch_code": "153",
+      "branch_name": "อ่าวลึกใต้",
+      "rm": "จินตนา อินทะเสโน",
+      "dm": "ณัฐกมล พิมเสน",
+      "coupon_amt": 100.0,
+      "time_diff": "13 น. 36 วิ",
+      "is_split": false,
+      "b1_sono": "BL1531-261121-0079",
+      "b1_time": "16:06:58",
+      "b1_net": 2308.0,
+      "b1_cost": 1900.39,
+      "b1_gp": 407.61,
+      "b1_gp_pct": 17.66,
+      "b2_sono": "BL1531-261121-0082",
+      "b2_time": "16:20:34",
+      "b2_net": 77.0,
+      "b2_cost": 120.0,
+      "b2_gp": -43.0,
+      "b2_gp_pct": -55.84,
+      "comb_net": 2385.0,
+      "comb_cost": 2020.39,
+      "comb_gp": 364.61,
+      "comb_gp_pct": 15.29,
+      "is_net_profit": true
+    },
     {
       "cstcode": "0934701178",
       "branch_code": "042",
@@ -411200,155 +411308,155 @@ window.DASHBOARD_DATA = {
     }
   ],
   "coupon_pair_summary": {
-    "total_pairs": 182,
-    "net_profit_count": 166,
-    "net_profit_pct": 91.2,
+    "total_pairs": 184,
+    "net_profit_count": 168,
+    "net_profit_pct": 91.3,
     "net_loss_count": 16,
-    "net_loss_pct": 8.8,
-    "split_bill_count": 100,
+    "net_loss_pct": 8.7,
+    "split_bill_count": 101,
     "split_bill_pct": 54.9,
-    "total_b1_net": 185401.0,
-    "total_b1_cost": 130898.54,
-    "total_b1_gp": 54502.46,
-    "total_b2_net": 21226.0,
-    "total_b2_cost": 27371.21,
-    "total_b2_gp": -6145.21,
-    "total_combined_net": 206627.0,
-    "total_combined_cost": 158269.75,
-    "total_combined_gp": 48357.25,
-    "overall_comb_gp_pct": 23.4
+    "total_b1_net": 188346.0,
+    "total_b1_cost": 133294.97,
+    "total_b1_gp": 55051.03,
+    "total_b2_net": 21423.0,
+    "total_b2_cost": 27632.96,
+    "total_b2_gp": -6209.96,
+    "total_combined_net": 209769.0,
+    "total_combined_cost": 160927.93,
+    "total_combined_gp": 48841.07000000001,
+    "overall_comb_gp_pct": 23.28
   },
   "campaign_summary": {
     "start_date": "2026-11-01",
     "kpis": {
-      "total_sales_generated": 33326406.0,
-      "total_b1_sales": 30649586.0,
-      "total_b2_sales": 2676820.0,
-      "total_net_gp": 9367359.13,
+      "total_sales_generated": 33337511.0,
+      "total_b1_sales": 30659620.0,
+      "total_b2_sales": 2677891.0,
+      "total_net_gp": 9370487.03,
       "net_gp_pct": 28.11,
-      "total_discount_spent": 599320.0,
-      "sales_roi_multiplier": 55.61,
+      "total_discount_spent": 599650.0,
+      "sales_roi_multiplier": 55.59,
       "gp_roi_multiplier": 15.63,
-      "total_coupons_issued": 67806,
-      "total_issued_amount": 2205780.0,
-      "total_coupons_used": 12923,
-      "total_used_amount": 599320.0,
+      "total_coupons_issued": 67832,
+      "total_issued_amount": 2206570.0,
+      "total_coupons_used": 12930,
+      "total_used_amount": 599650.0,
       "overall_redemption_rate": 19.06,
-      "unique_customers": 11866
+      "unique_customers": 11872
     },
     "funnel": [
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 100.0,
-        "issued_cnt": 3499,
-        "issued_amt": 349900.0,
-        "b1_bill_cnt": 3498,
-        "b1_net_sales": 5866124.0,
-        "b1_gp": 1742723.21,
+        "issued_cnt": 3500,
+        "issued_amt": 350000.0,
+        "b1_bill_cnt": 3499,
+        "b1_net_sales": 5867213.0,
+        "b1_gp": 1743054.42,
         "b1_gp_pct": 29.71,
-        "used_cnt": 2335,
-        "used_amt": 233500.0,
-        "redemption_pct": 66.73,
-        "b2_net_sales": 379468.0,
-        "b2_gp": -90432.36,
-        "b2_gp_pct": -23.83,
-        "total_sales": 6245592.0,
+        "used_cnt": 2336,
+        "used_amt": 233600.0,
+        "redemption_pct": 66.74,
+        "b2_net_sales": 379545.0,
+        "b2_gp": -90475.36,
+        "b2_gp_pct": -23.84,
+        "total_sales": 6246758.0,
         "sales_share_pct": 18.74,
-        "total_gp": 1652290.85,
-        "combined_margin_pct": 26.46
+        "total_gp": 1652579.06,
+        "combined_margin_pct": 26.45
       },
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 50.0,
-        "issued_cnt": 11433,
-        "issued_amt": 571650.0,
-        "b1_bill_cnt": 11433,
-        "b1_net_sales": 8083244.0,
-        "b1_gp": 2480839.92,
+        "issued_cnt": 11436,
+        "issued_amt": 571800.0,
+        "b1_bill_cnt": 11436,
+        "b1_net_sales": 8085268.0,
+        "b1_gp": 2481611.15,
         "b1_gp_pct": 30.69,
-        "used_cnt": 3864,
-        "used_amt": 193200.0,
-        "redemption_pct": 33.8,
-        "b2_net_sales": 778639.0,
-        "b2_gp": 50125.67,
-        "b2_gp_pct": 6.44,
-        "total_sales": 8861883.0,
+        "used_cnt": 3867,
+        "used_amt": 193350.0,
+        "redemption_pct": 33.81,
+        "b2_net_sales": 779253.0,
+        "b2_gp": 50269.23,
+        "b2_gp_pct": 6.45,
+        "total_sales": 8864521.0,
         "sales_share_pct": 26.59,
-        "total_gp": 2530965.59,
+        "total_gp": 2531880.38,
         "combined_margin_pct": 28.56
       },
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 30.0,
-        "issued_cnt": 22675,
-        "issued_amt": 680250.0,
-        "b1_bill_cnt": 22675,
-        "b1_net_sales": 8953213.0,
-        "b1_gp": 2646901.98,
+        "issued_cnt": 22685,
+        "issued_amt": 680550.0,
+        "b1_bill_cnt": 22685,
+        "b1_net_sales": 8957210.0,
+        "b1_gp": 2648022.08,
         "b1_gp_pct": 29.56,
-        "used_cnt": 3814,
-        "used_amt": 114420.0,
+        "used_cnt": 3816,
+        "used_amt": 114480.0,
         "redemption_pct": 16.82,
-        "b2_net_sales": 865775.0,
-        "b2_gp": 146946.53,
+        "b2_net_sales": 866025.0,
+        "b2_gp": 146972.38,
         "b2_gp_pct": 16.97,
-        "total_sales": 9818988.0,
-        "sales_share_pct": 29.46,
-        "total_gp": 2793848.51,
+        "total_sales": 9823235.0,
+        "sales_share_pct": 29.47,
+        "total_gp": 2794994.46,
         "combined_margin_pct": 28.45
       },
       {
         "coupontype": "PURCHASE_REWARD",
         "couponamt": 20.0,
-        "issued_cnt": 30199,
-        "issued_amt": 603980.0,
-        "b1_bill_cnt": 30199,
-        "b1_net_sales": 7747005.0,
-        "b1_gp": 2259331.6,
+        "issued_cnt": 30211,
+        "issued_amt": 604220.0,
+        "b1_bill_cnt": 30211,
+        "b1_net_sales": 7749929.0,
+        "b1_gp": 2260087.91,
         "b1_gp_pct": 29.16,
-        "used_cnt": 2910,
-        "used_amt": 58200.0,
+        "used_cnt": 2911,
+        "used_amt": 58220.0,
         "redemption_pct": 9.64,
-        "b2_net_sales": 652938.0,
-        "b2_gp": 130922.58,
+        "b2_net_sales": 653068.0,
+        "b2_gp": 130945.22,
         "b2_gp_pct": 20.05,
-        "total_sales": 8399943.0,
+        "total_sales": 8402997.0,
         "sales_share_pct": 25.21,
-        "total_gp": 2390254.18,
-        "combined_margin_pct": 28.46
+        "total_gp": 2391033.13,
+        "combined_margin_pct": 28.45
       }
     ],
     "funnel_totals": {
-      "total_issued_cnt": 67806,
-      "total_issued_amt": 2205780.0,
-      "total_b1_sales": 30649586.0,
-      "total_b1_gp": 9129796.71,
+      "total_issued_cnt": 67832,
+      "total_issued_amt": 2206570.0,
+      "total_b1_sales": 30659620.0,
+      "total_b1_gp": 9132775.56,
       "b1_margin_pct": 29.79,
-      "total_used_cnt": 12923,
-      "total_used_amt": 599320.0,
+      "total_used_cnt": 12930,
+      "total_used_amt": 599650.0,
       "redemption_pct": 19.06,
-      "total_b2_sales": 2676820.0,
-      "total_b2_gp": 237562.42,
-      "total_sales": 33326406.0,
-      "total_gp": 9367359.13,
+      "total_b2_sales": 2677891.0,
+      "total_b2_gp": 237711.47,
+      "total_sales": 33337511.0,
+      "total_gp": 9370487.03,
       "combined_margin_pct": 28.11
     },
     "timing_groups": [
       {
         "timing_group": "DIFFERENT_DAY",
         "label": "📅 กลับมาซื้อซ้ำข้ามวัน (Customer Retention)",
-        "pair_count": 3966,
-        "unique_customers": 3707,
-        "discount_spent": 142940.0,
-        "b1_sales": 2013364.0,
-        "b1_gp": 575548.19,
+        "pair_count": 3967,
+        "unique_customers": 3708,
+        "discount_spent": 142990.0,
+        "b1_sales": 2013883.0,
+        "b1_gp": 575721.59,
         "b1_gp_pct": 28.59,
-        "b2_sales": 1052303.0,
-        "total_sales": 3065667.0,
-        "total_cost": 2301442.47,
-        "combined_net_gp": 764224.53,
+        "b2_sales": 1052443.0,
+        "total_sales": 3066326.0,
+        "total_cost": 2301905.13,
+        "combined_net_gp": 764420.87,
         "combined_gp_pct": 24.93,
-        "sales_share_pct": 26.33
+        "sales_share_pct": 26.32
       },
       {
         "timing_group": "OTHER",
@@ -411369,46 +411477,46 @@ window.DASHBOARD_DATA = {
       {
         "timing_group": "SAME_DAY_LATER",
         "label": "🕒 ซื้อซ้ำในวันเดียวกัน (> 10 นาที)",
-        "pair_count": 3119,
-        "unique_customers": 3049,
-        "discount_spent": 163700.0,
-        "b1_sales": 2731338.0,
-        "b1_gp": 827866.39,
-        "b1_gp_pct": 30.31,
-        "b2_sales": 622159.0,
-        "total_sales": 3353497.0,
-        "total_cost": 2482295.63,
-        "combined_net_gp": 871201.37,
-        "combined_gp_pct": 25.98,
-        "sales_share_pct": 28.8
+        "pair_count": 3121,
+        "unique_customers": 3051,
+        "discount_spent": 163850.0,
+        "b1_sales": 2734354.0,
+        "b1_gp": 828504.26,
+        "b1_gp_pct": 30.3,
+        "b2_sales": 622610.0,
+        "total_sales": 3356964.0,
+        "total_cost": 2485063.68,
+        "combined_net_gp": 871900.32,
+        "combined_gp_pct": 25.97,
+        "sales_share_pct": 28.81
       },
       {
         "timing_group": "SPLIT_BILL_10M",
         "label": "⚡ แยกบิลซื้อซ้ำทันที (≤ 10 นาที)",
-        "pair_count": 5744,
-        "unique_customers": 5446,
-        "discount_spent": 288530.0,
-        "b1_sales": 4169633.0,
-        "b1_gp": 1200667.25,
+        "pair_count": 5748,
+        "unique_customers": 5450,
+        "discount_spent": 288660.0,
+        "b1_sales": 4171669.0,
+        "b1_gp": 1201264.17,
         "b1_gp_pct": 28.8,
-        "b2_sales": 971892.0,
-        "total_sales": 5141525.0,
-        "total_cost": 3941457.41,
-        "combined_net_gp": 1200067.59,
+        "b2_sales": 972372.0,
+        "total_sales": 5144041.0,
+        "total_cost": 3943311.46,
+        "combined_net_gp": 1200729.54,
         "combined_gp_pct": 23.34,
         "sales_share_pct": 44.15
       }
     ],
     "timing_totals": {
-      "pair_count": 12923,
-      "unique_customers": 11866,
-      "discount_spent": 599320.0,
-      "b1_sales": 8968007.0,
-      "b1_gp": 2620737.92,
+      "pair_count": 12930,
+      "unique_customers": 11872,
+      "discount_spent": 599650.0,
+      "b1_sales": 8973578.0,
+      "b1_gp": 2622146.11,
       "b1_gp_pct": 29.22,
-      "b2_sales": 2676820.0,
-      "total_sales": 11644827.0,
-      "total_gp": 2858300.34,
+      "b2_sales": 2677891.0,
+      "total_sales": 11651469.0,
+      "total_gp": 2859857.58,
       "combined_gp_pct": 24.55
     }
   }
