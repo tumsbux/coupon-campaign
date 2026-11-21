@@ -1,0 +1,120 @@
+{
+  "name": "Coupon Campaign Auto-Update (Every 20 Mins) ➔ GitHub Pages",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 20
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger-20m",
+      "name": "Every 20 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.github.com/repos/tumsbux/coupon-campaign/dispatches",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github.v3+json"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.GITHUB_TOKEN || 'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN' }}"
+            },
+            {
+              "name": "User-Agent",
+              "value": "n8n-coupon-trigger"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"event_type\": \"update_coupon_dashboard\"\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "trigger-github-action",
+      "name": "Trigger GitHub Actions (Coupon Campaign)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "status",
+              "value": "Success"
+            },
+            {
+              "name": "message",
+              "value": "=Triggered GitHub Actions successfully at {{ $now.format('YYYY-MM-DD HH:mm:ss') }}"
+            },
+            {
+              "name": "dashboard_url",
+              "value": "https://tumsbux.github.io/coupon-campaign/"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "log-status",
+      "name": "Log Success Status",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [720, 300]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Every 20 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Trigger GitHub Actions (Coupon Campaign)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger GitHub Actions (Coupon Campaign)": {
+      "main": [
+        [
+          {
+            "node": "Log Success Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1.0.0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "coupon-campaign-trigger"
+  }
+}
