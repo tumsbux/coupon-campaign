@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22 23:52:49",
+  "generated_at": "2026-11-23 05:17:06",
   "target_date": "2026-11-22",
   "available_dates": [
     "2026-11-22",
@@ -132168,15 +132168,15 @@
                   "neg_bills_count": 2
                 },
                 {
-                  "branch_code": "087",
-                  "branch_name": "ย่านตาขาว",
+                  "branch_code": "151",
+                  "branch_name": "คลองมวน",
                   "province": "ตรัง",
                   "total_loss": 7.23,
                   "neg_bills_count": 1
                 },
                 {
-                  "branch_code": "151",
-                  "branch_name": "คลองมวน",
+                  "branch_code": "087",
+                  "branch_name": "ย่านตาขาว",
                   "province": "ตรัง",
                   "total_loss": 7.23,
                   "neg_bills_count": 1
@@ -361439,16 +361439,16 @@
                   "neg_bills_count": 1
                 },
                 {
-                  "branch_code": "225",
-                  "branch_name": "ลำโพ (นบ-1)",
-                  "province": "นนทบุรี",
+                  "branch_code": "224",
+                  "branch_name": "หนองปลาหมอ (สบ-3)",
+                  "province": "สระบุรี",
                   "total_loss": 0.18,
                   "neg_bills_count": 1
                 },
                 {
-                  "branch_code": "224",
-                  "branch_name": "หนองปลาหมอ (สบ-3)",
-                  "province": "สระบุรี",
+                  "branch_code": "225",
+                  "branch_name": "ลำโพ (นบ-1)",
+                  "province": "นนทบุรี",
                   "total_loss": 0.18,
                   "neg_bills_count": 1
                 }
