@@ -2,8 +2,12 @@ name: Update Coupon Campaign Dashboard
 
 on:
   schedule:
-    # Backup cron on GitHub Actions (every 20 minutes)
-    - cron: '*/20 * * * *'
+    # 06:30, 06:50 THA (23:30, 23:50 UTC วันก่อนหน้า)
+    - cron: '30,50 23 * * *'
+    # 07:00 - 21:59 THA (00:00 - 14:59 UTC) ทุก 20 นาที
+    - cron: '*/20 0-14 * * *'
+    # 22:00 THA (15:00 UTC)
+    - cron: '0 15 * * *'
   repository_dispatch:
     # Trigger from external services like n8n Webhook / API
     types: [update_coupon_dashboard]
@@ -43,6 +47,7 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD || 'pBp8@24019!' }}
           DB_NAME: ${{ secrets.DB_NAME || 'MYPOS2018_CENTER' }}
           START_DATE: '2026-11-01'
+          FORCE_RUN: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
         run: |
           python run_alert_check.py
 
