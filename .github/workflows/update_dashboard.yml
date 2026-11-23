@@ -47,7 +47,7 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD || 'pBp8@24019!' }}
           DB_NAME: ${{ secrets.DB_NAME || 'MYPOS2018_CENTER' }}
           START_DATE: '2026-11-01'
-          FORCE_RUN: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
+          FORCE_RUN: ${{ (github.event_name == 'workflow_dispatch' || github.event_name == 'repository_dispatch') && 'true' || 'false' }}
         run: |
           python run_alert_check.py
 

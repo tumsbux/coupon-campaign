@@ -424,6 +424,37 @@ def run_detection():
             'overall_comb_gp_pct': round(comb_gp_tot / comb_net_tot * 100, 2) if comb_net_tot > 0 else 0
         }
 
+        # Root cause loss breakdown for cur_bills (Dynamic Tab 3 calculation)
+        coupon_loss = 0.0
+        score_loss = 0.0
+        thin_margin_loss = 0.0
+        for b in cur_bills:
+            loss = float(b['loss_amt'])
+            c_disc = float(b.get('sodisc_coupon') or 0)
+            s_disc = float(b.get('sodisc_score') or 0)
+            if c_disc > 0:
+                coupon_loss += loss
+            elif s_disc > 0:
+                score_loss += loss
+            else:
+                thin_margin_loss += loss
+
+        total_loss_calc = (coupon_loss + score_loss + thin_margin_loss) or day_total_loss
+        rc_coupon_pct = round(coupon_loss / total_loss_calc * 100, 1) if total_loss_calc > 0 else 0
+        rc_score_pct = round(score_loss / total_loss_calc * 100, 1) if total_loss_calc > 0 else 0
+        rc_thin_pct = round(thin_margin_loss / total_loss_calc * 100, 1) if total_loss_calc > 0 else 0
+
+        root_cause_data = {
+            'total_loss': round(day_total_loss, 2),
+            'coupon_loss_amt': round(coupon_loss, 2),
+            'coupon_loss_pct': rc_coupon_pct,
+            'score_loss_amt': round(score_loss, 2),
+            'score_loss_pct': rc_score_pct,
+            'thin_margin_loss_amt': round(thin_margin_loss, 2),
+            'thin_margin_loss_pct': rc_thin_pct,
+            'top_loss_item': top_items_list[0] if top_items_list else None
+        }
+
         daily_records[d_str] = {
             'date': d_str,
             'summary': {
@@ -433,9 +464,11 @@ def run_detection():
             'rm_summary': rm_summary_list,
             'top_branches_affected': top_branches[:25],
             'top_loss_items': top_items_list[:20],
-            'recent_negative_bills': cur_bills[:250],
-            'coupon_pairs': cur_coupons[:300],
-            'coupon_pair_summary': cp_summary
+            'recent_negative_bills': cur_bills,
+            'negative_bills': cur_bills,
+            'coupon_pairs': cur_coupons,
+            'coupon_pair_summary': cp_summary,
+            'root_cause': root_cause_data
         }
 
     # 8. Query Campaign Marketing Summary (Tab 5)
@@ -701,21 +734,27 @@ def run_detection():
         'negative_bills': today_record['recent_negative_bills'],
         'coupon_pairs': today_record['coupon_pairs'],
         'coupon_pair_summary': today_record['coupon_pair_summary'],
+        'root_cause': today_record.get('root_cause'),
         'campaign_summary': campaign_summary
     }
 
-    json_str = json.dumps(payload, ensure_ascii=False, cls=DecimalEncoder, indent=2)
+    json_str = json.dumps(payload, ensure_ascii=False, cls=DecimalEncoder, separators=(',', ':'))
 
-    # 1. Save JSON file
+    # 1. Save JSON file (write in chunks to prevent Windows CRT buffer limit)
     out_json = os.path.join(BASE_DIR, "gp_anomaly_data.json")
     with open(out_json, "w", encoding="utf-8") as f:
-        f.write(json_str)
+        chunk_size = 1024 * 1024
+        for i in range(0, len(json_str), chunk_size):
+            f.write(json_str[i:i+chunk_size])
     print(f"Data saved to {out_json} ({len(json_str)/1024/1024:.2f} MB)")
     
     # 2. Save JS file for local access without CORS restrictions
     out_js = os.path.join(BASE_DIR, "gp_anomaly_data.js")
     with open(out_js, "w", encoding="utf-8") as f:
-        f.write("window.DASHBOARD_DATA = " + json_str + ";\n")
+        f.write("window.DASHBOARD_DATA = ")
+        for i in range(0, len(json_str), chunk_size):
+            f.write(json_str[i:i+chunk_size])
+        f.write(";\n")
     print(f"Data saved to {out_js}")
 
     return payload

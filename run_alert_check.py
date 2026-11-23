@@ -18,11 +18,12 @@ def is_within_operating_hours():
     return start_time <= current_time <= end_time
 
 def update_html_embedded_data(data):
+    # Keep HTML files lightweight (< 300 KB) by keeping window.DASHBOARD_DATA = null in the HTML
+    # Data is loaded dynamically via fetch('gp_anomaly_data.json') or gp_anomaly_data.js script tag
     html_targets = [
         os.path.join(BASE_DIR, "gp_anomaly_dashboard.html"),
         os.path.join(BASE_DIR, "index.html")
     ]
-    json_str = json.dumps(data, ensure_ascii=False, cls=DecimalEncoder)
     marker_start = "window.DASHBOARD_DATA = "
     marker_end = ";\n    </script>"
 
@@ -37,12 +38,14 @@ def update_html_embedded_data(data):
             if start_idx != -1:
                 end_idx = html.find(marker_end, start_idx)
                 if end_idx != -1:
-                    new_html = html[:start_idx + len(marker_start)] + json_str + html[end_idx:]
-                    with open(html_path, "w", encoding="utf-8") as f:
-                        f.write(new_html)
-                    print(f"Embedded data in {os.path.basename(html_path)} updated successfully!")
+                    current_val = html[start_idx + len(marker_start):end_idx].strip()
+                    if current_val != "null":
+                        new_html = html[:start_idx + len(marker_start)] + "null" + html[end_idx:]
+                        with open(html_path, "w", encoding="utf-8") as f:
+                            f.write(new_html)
+                        print(f"Optimized {os.path.basename(html_path)}: stripped embedded JSON (size reduced to < 300 KB).")
         except Exception as e:
-            print(f"Note: Could not embed in {os.path.basename(html_path)}:", e)
+            print(f"Note: Could not optimize {os.path.basename(html_path)}:", e)
 
 def check_and_alert():
     thai_now = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=7)
@@ -71,17 +74,17 @@ def check_and_alert():
 
 ⚠️ รายการบิลวิกฤต (ขายขาดทุน / GP ติดลบ):
   • จำนวนบิลที่ GP ติดลบ: {s['neg_bills_count']:,} บิล ({s['neg_bills_pct']}%) ของบิลทั้งหมด)
-  • กระจายตัวใน: {s.get('branches_affected_count', len(data['affected_branches']))} สาขา
+  • กระจายตัวใน: {s.get('branches_affected_count', len(data.get('top_branches_affected', [])))} สาขา
   • ยอดขาดทุนสะสมรวม: -฿{s['total_loss_amount']:,.2f} บาท
 
 🏢 5 อันดับสาขาที่พบยอดขาดทุนสะสมสูงสุด:
 """
-    for i, b in enumerate(data['affected_branches'][:5], 1):
-        msg += f"  {i}. สาขา {b['code']} ({b['name']}) - ขาดทุนสะสม -฿{b['loss_amount']:,.2f} ({b['neg_bills']} บิล) [{b['province']}]\n"
+    for i, b in enumerate(data.get('top_branches_affected', [])[:5], 1):
+        msg += f"  {i}. สาขา {b['branch_code']} ({b['branch_name']}) - ขาดทุนสะสม -฿{b['total_loss']:,.2f} ({b['neg_bills_count']} บิล) [{b['province']}]\n"
 
     msg += "\n📦 5 อันดับสินค้าที่เป็นตัวการดึงให้ GP ติดลบ:\n"
-    for i, item in enumerate(data['problem_items'][:5], 1):
-        msg += f"  {i}. {item['barcode_name']} (รหัส {item['barcode']}) - พบใน {item['neg_bills_count']} บิลขาดทุน (รวม {item['total_qty']} ชิ้น)\n"
+    for i, item in enumerate(data.get('top_loss_items', [])[:5], 1):
+        msg += f"  {i}. {item['name']} (รหัส {item['iprod']}) - พบใน {item['bills_count']} บิลขาดทุน (รวม {item['total_qty']} ชิ้น)\n"
 
     msg += """=====================================================
 🌐 เปิดดูแดชบอร์ดมอนิเตอร์แบบ Interactive ได้ที่:
