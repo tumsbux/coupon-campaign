@@ -675,6 +675,8 @@ def run_detection():
             'total_discount_spent': float(total_used_amount),
             'sales_roi_multiplier': round(float(tot_funnel_sales) / float(total_used_amount), 2) if total_used_amount > 0 else 0,
             'gp_roi_multiplier': round(float(tot_funnel_gp) / float(total_used_amount), 2) if total_used_amount > 0 else 0,
+            'incremental_sales_roi': round(float(tot_funnel_b2_sales) / float(total_used_amount), 2) if total_used_amount > 0 else 0,
+            'incremental_gp_roi': round(float(tot_funnel_b2_gp) / float(total_used_amount), 2) if total_used_amount > 0 else 0,
             'total_coupons_issued': total_issued_count,
             'total_issued_amount': float(total_issued_amount),
             'total_coupons_used': total_used_count,

@@ -1338,9 +1338,14 @@
                 <div class="kpi-sub" id="campDiscountSub">นำมาใช้แล้ว 0 ใบ</div>
             </div>
             <div class="kpi-card" style="border-top: 4px solid #8b5cf6;">
-                <div class="kpi-title">ดัชนีสร้างยอดขาย (Sales ROI)</div>
+                <div class="kpi-title">ดัชนีสร้างยอดขายรวม (Full-Cycle ROI)</div>
                 <div class="kpi-value" style="color: #7c3aed;" id="campSalesMultiplier">0.0x</div>
-                <div class="kpi-sub" id="campGpMultiplier">ทุก ฿1 คูปอง = กำไร ฿0.00</div>
+                <div class="kpi-sub" id="campGpMultiplier">ทุก ฿1 คูปอง = กำไร ฿0.00 (บิล 1+2)</div>
+            </div>
+            <div class="kpi-card" style="border-top: 4px solid #0284c7; background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);">
+                <div class="kpi-title" style="color: #0369a1; font-weight: 700;">ยอดขายเพิ่มจริง (Incremental ROI)</div>
+                <div class="kpi-value" style="color: #0284c7;" id="campIncSalesMultiplier">0.0x</div>
+                <div class="kpi-sub" id="campIncGpMultiplier">ทุก ฿1 คูปอง = กำไร ฿0.00 (เฉพาะบิล 2)</div>
             </div>
             <div class="kpi-card" style="border-top: 4px solid #06b6d4;">
                 <div class="kpi-title">อัตราการนำมาใช้ (Redemption)</div>
@@ -1425,7 +1430,7 @@
             <h3 style="color: #6b21a8; margin-bottom: 12px; font-size: 16px;">💡 บทวิเคราะห์และข้อเสนอแนะเชิงกลยุทธ์สำหรับทีมการตลาด (Actionable Marketing Insights)</h3>
             <ul style="line-height: 1.8; font-size: 13px; color: #4c1d95; padding-left: 20px;">
                 <li><strong>คูปองมูลค่าสูงกระตุ้นการซื้อได้ผลยอดเยี่ยมที่สุด:</strong> คูปอง ฿100 มี Redemption Rate สูงถึง <strong>66.7%</strong> และคูปอง ฿50 สูงถึง <strong>33.8%</strong> แสดงว่าลูกค้ารู้สึกคุ้มค่าและตั้งใจนำกลับมาใช้อย่างแท้จริง</li>
-                <li><strong>แคมเปญสร้างยอดขายกลับคืนสูงถึง <span id="insMultiplier">55.6</span> เท่าของส่วนลด:</strong> ให้ส่วนลดคูปองจริงไป <strong id="insDiscount">฿599,240.00</strong> แต่ดึงยอดขายเข้าระบบได้ถึง <strong id="insSales">฿33.32 ล้านบาท</strong> และสร้างกำไรขั้นต้นสุทธิกลับมา <strong id="insGp">+฿9.37 ล้านบาท</strong> (Net Margin <span id="insMargin">28.11%</span>) พิสูจน์ได้ชัดเจนว่าแคมเปญมีกำไรมหาศาลและคุ้มค่าอย่างยิ่ง</li>
+                <li><strong>ผลตอบแทนของแคมเปญ (Full-Cycle vs Incremental ROI):</strong> ให้ส่วนลดคูปองจริงไป <strong id="insDiscount">฿0.00</strong> แต่เมื่อคิดแบบวงจรคู่บิลรวมทั้งระบบ (Ecosystem) ยอดขายดึงกลับคืนสูงถึง <strong><span id="insMultiplier">0.0</span> เท่า</strong> (<strong id="insSales">฿0.00</strong> กำไรสุทธิรวม <strong id="insGp">฿0.00</strong> Net Margin <span id="insMargin">0.00%</span> ทุก ฿1 คูปอง = กำไรสุทธิ ฿<span id="insGpMult">0.00</span>) ขณะที่หากวัดผลเฉพาะ <em>Incremental Revenue (เฉพาะบิล 2 ที่นำคูปองมาใช้จริง)</em> แคมเปญสร้างยอดขายเพิ่มได้ <strong><span id="insIncMult">0.0</span> เท่า</strong> (ทุก ฿1 คูปอง = กำไรสุทธิบิล 2 ฿<span id="insIncGpMult">0.00</span>) พิสูจน์ว่าแคมเปญช่วยกระตุ้นยอดขายกลับมาได้จริง แต่ต้องบริหาร Margin ของบิล 2 ให้รัดกุม</li>
                 <li><strong>พฤติกรรมแยกบิลทันทีหน้าร้าน (Split Bill ≤ 10 นาที):</strong> พบสัดส่วน <strong id="insSplitPct">-</strong> ของยอดขายที่นำคูปองมาใช้ ซึ่งแม้จะทำให้บิลที่ 2 มียอดขายต่ำจน GP ติดลบ แต่เมื่อรวมกับบิล 1 แล้ว บริษัทยังได้กำไรสุทธิเฉลี่ยสูงถึง <strong id="insSplitGp">-</strong> อย่างไรก็ตาม เพื่อป้องกันการใช้คูปองกับสินค้าที่ตั้งใจจะซื้ออยู่แล้ว แนะนำให้กำหนด <em>"ยอดซื้อขั้นต่ำในการใช้คูปอง (Minimum Spend)"</em> เช่น ใช้คูปอง ฿50 เมื่อซื้อ ฿150 ขึ้นไป หรือกำหนดให้คูปอง <em>"เริ่มใช้งานได้ในวันถัดไป (Next-Day Valid)"</em> เพื่อดึงลูกค้ากลับมาซื้อซ้ำจริง</li>
                 <li><strong>การดึงดูดลูกค้ากลับมาซื้อซ้ำข้ามวัน (Customer Retention):</strong> มีลูกค้ากว่า <strong id="insRetPairs">3,966</strong> คู่บิลที่กลับมาซื้อซ้ำคนละวัน ก่อให้เกิดยอดขายเพิ่มขึ้นกว่า <strong id="insRetSales">฿3.07 ล้านบาท</strong> ถือเป็นความสำเร็จในการรักษาฐานลูกค้าสมาชิก (Customer Lifetime Value)</li>
             </ul>
@@ -2315,7 +2320,19 @@
             document.getElementById('campDiscountSpent').textContent = formatTHB(k.total_discount_spent);
             document.getElementById('campDiscountSub').textContent = `นำมาใช้แล้ว ${Number(k.total_coupons_used).toLocaleString()} ใบ`;
             document.getElementById('campSalesMultiplier').textContent = `${Number(k.sales_roi_multiplier).toFixed(1)}x`;
-            document.getElementById('campGpMultiplier').textContent = `ทุก ฿1 คูปอง = กำไรสุทธิ ฿${Number(k.gp_roi_multiplier).toFixed(2)}`;
+            document.getElementById('campGpMultiplier').textContent = `ทุก ฿1 คูปอง = กำไรสุทธิ ฿${Number(k.gp_roi_multiplier).toFixed(2)} (บิล 1+2)`;
+            
+            const b2Sales = Number(k.total_b2_sales || (cs.funnel_totals && cs.funnel_totals.total_b2_sales) || 0);
+            const b2Gp = Number(k.total_b2_gp || (cs.funnel_totals && cs.funnel_totals.total_b2_gp) || 0);
+            const discSpent = Number(k.total_discount_spent || k.total_used_amount || 0);
+            const incSalesRoi = k.incremental_sales_roi !== undefined ? k.incremental_sales_roi : (discSpent > 0 ? (b2Sales / discSpent) : 0);
+            const incGpRoi = k.incremental_gp_roi !== undefined ? k.incremental_gp_roi : (discSpent > 0 ? (b2Gp / discSpent) : 0);
+
+            const incSalesEl = document.getElementById('campIncSalesMultiplier');
+            if (incSalesEl) incSalesEl.textContent = `${Number(incSalesRoi).toFixed(1)}x`;
+            const incGpEl = document.getElementById('campIncGpMultiplier');
+            if (incGpEl) incGpEl.textContent = `ทุก ฿1 คูปอง = กำไรสุทธิ ฿${Number(incGpRoi).toFixed(2)} (เฉพาะบิล 2)`;
+            
             document.getElementById('campRedemptionRate').textContent = `${Number(k.overall_redemption_rate).toFixed(1)}%`;
             document.getElementById('campRedemptionSub').textContent = `แจกไป ${Number(k.total_coupons_issued).toLocaleString()} ใบ`;
             document.getElementById('campUniqueCust').textContent = `${Number(k.unique_customers).toLocaleString()} คน`;
@@ -2425,6 +2442,12 @@
             // 3. Update Dynamic Insights Spans
             const insMult = document.getElementById('insMultiplier');
             if (insMult) insMult.textContent = Number(k.sales_roi_multiplier).toFixed(1);
+            const insGpMult = document.getElementById('insGpMult');
+            if (insGpMult) insGpMult.textContent = Number(k.gp_roi_multiplier).toFixed(2);
+            const insIncMult = document.getElementById('insIncMult');
+            if (insIncMult) insIncMult.textContent = Number(incSalesRoi).toFixed(1);
+            const insIncGpMult = document.getElementById('insIncGpMult');
+            if (insIncGpMult) insIncGpMult.textContent = Number(incGpRoi).toFixed(2);
             const insDisc = document.getElementById('insDiscount');
             if (insDisc) insDisc.textContent = formatTHB(k.total_discount_spent);
             const insSales = document.getElementById('insSales');
