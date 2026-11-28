@@ -863,31 +863,31 @@
 .campaign-kpi-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 24px;
 }
 
 .campaign-kpi-grid .kpi-card {
-    padding: 15px 12px !important;
+    padding: 15px 10px !important;
 }
 
-/* Specifically tune large monetary numbers so they fit the card frame comfortably */
+/* Specifically tune large monetary numbers to be bold & prominent while comfortably fitting the card */
 .campaign-kpi-grid #campTotalSales,
 .campaign-kpi-grid #campNetGp {
-    font-size: clamp(15px, 1.08vw, 19px) !important;
-    letter-spacing: -0.4px;
+    font-size: clamp(17px, 1.25vw, 21px) !important;
+    letter-spacing: -0.5px;
 }
 
 .campaign-kpi-grid #campDiscountSpent {
-    font-size: clamp(16.5px, 1.15vw, 20.5px) !important;
-    letter-spacing: -0.3px;
+    font-size: clamp(18px, 1.35vw, 22px) !important;
+    letter-spacing: -0.4px;
 }
 
 /* Desktop wide (>= 1440px): 7 cards evenly aligned in 1 row */
 @media (min-width: 1440px) {
     .campaign-kpi-grid {
         grid-template-columns: repeat(7, 1fr) !important;
-        gap: 12px !important;
+        gap: 10px !important;
     }
 }
 
@@ -2503,11 +2503,12 @@
             if (!cs || !cs.kpis) return;
             const k = cs.kpis;
             const formatTHB = (val) => '฿' + Number(val || 0).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            const formatTHBDec = (val) => {
+            const formatTHBDec = (val, prefix = '') => {
                 const str = Number(val || 0).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 const dotIdx = str.indexOf('.');
-                if (dotIdx === -1) return '฿' + str;
-                return '฿' + str.slice(0, dotIdx) + '<span style="font-size:0.8em; opacity:0.85; font-weight:600;">' + str.slice(dotIdx) + '</span>';
+                const p = prefix ? prefix : '';
+                if (dotIdx === -1) return p + '฿' + str;
+                return p + '฿' + str.slice(0, dotIdx) + '<span style="font-size:0.8em; opacity:0.85; font-weight:600;">' + str.slice(dotIdx) + '</span>';
             };
 
             document.getElementById('campTotalSales').innerHTML = formatTHBDec(k.total_sales_generated);
@@ -2515,7 +2516,7 @@
             if (subSalesEl && k.total_b1_sales) {
                 subSalesEl.textContent = `บิล 1 ได้คูปอง ${formatTHB(k.total_b1_sales)} + บิล 2 ใช้คูปอง ${formatTHB(k.total_b2_sales)}`;
             }
-            document.getElementById('campNetGp').innerHTML = '<span style="font-weight:700; font-size:0.85em; margin-right:1px;">+</span>' + formatTHBDec(k.total_net_gp);
+            document.getElementById('campNetGp').innerHTML = formatTHBDec(k.total_net_gp, '+');
             document.getElementById('campNetGpMargin').textContent = `Margin ${Number(k.net_gp_pct).toFixed(2)}% (ผลลัพธ์รวมทั้งแคมเปญ)`;
             document.getElementById('campDiscountSpent').innerHTML = formatTHBDec(k.total_discount_spent);
             document.getElementById('campDiscountSub').textContent = `นำมาใช้แล้ว ${Number(k.total_coupons_used).toLocaleString()} ใบ`;
